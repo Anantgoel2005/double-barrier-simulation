@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resonant Tunnelling in Double Barrier & RTD Diode (Interactive 3D Simulation)</title>
+    <!-- Three.js for 3D Quantum Visualization -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        :root {
+            --bg-primary: #0f141c;
+            --bg-secondary: #171f2c;
+            --bg-card: #1e2838;
+            --accent-blue: #38bdf8;
+            --accent-green: #4ade80;
+            --accent-red: #f87171;
+            --accent-yellow: #fbbf24;
+            --accent-purple: #c084fc;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-col: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar Controls */
+        #sidebar {
+            width: 360px;
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border-col);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .header h1 {
+            font-size: 1.25rem;
+            color: var(--accent-blue);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .control-group {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-col);
+            border-radius: 8px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .group-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-yellow);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .slider-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: var(--text-main);
+        }
+
+        .slider-val {
+            font-weight: bold;
+            color: var(--accent-blue);
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            background: #334155;
+            border-radius: 3px;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        button {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-col);
+            padding: 10px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        button:hover {
+            border-color: var(--accent-blue);
+            background: #27354a;
+        }
+
+        button.btn-primary {
+            background: #0284c7;
+            border-color: #38bdf8;
+            color: white;
+        }
+
+        button.btn-primary:hover {
+            background: #0369a1;
+        }
+
+        /* Main Workspace */
+        #main-workspace {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            gap: 16px;
+            overflow-y: auto;
+        }
+
+        /* Top 3D & Status Row */
+        .top-row {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 16px;
+            height: 380px;
+            flex-shrink: 0;
+        }
+
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-col);
+            border-radius: 10px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        #three-container {
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            position: relative;
+            background: #080c14;
+        }
+
+        .three-overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(15, 20, 28, 0.85);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            border: 1px solid var(--border-col);
+            pointer-events: none;
+        }
+
+        /* Status & Metrics Panel */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .metric-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-col);
+            border-radius: 6px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .metric-title {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .metric-value {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+        }
+
+        .status-badge {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-align: center;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--accent-blue);
+        }
+
+        .status-badge.ndr {
+            background: rgba(248, 113, 113, 0.15);
+            border-color: rgba(248, 113, 113, 0.4);
+            color: var(--accent-red);
+        }
+
+        .status-badge.resonance {
+            background: rgba(74, 222, 128, 0.15);
+            border-color: rgba(74, 222, 128, 0.4);
+            color: var(--accent-green);
+        }
+
+        /* Bottom 2D Charts Row */
+        .bottom-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            min-height: 280px;
+            flex-shrink: 0;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .chart-container {
+            position: relative;
+            flex: 1;
+            min-height: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar: Sliders and Controls -->
+    <div id="sidebar">
+        <div class="header">
+            <h1>Resonant Tunnelling Lab</h1>
+            <p>Quantum Double Barrier & Diode (RTD) Simulation</p>
+        </div>
+
+        <!-- Barrier & Well Parameters -->
+        <div class="control-group">
+            <div class="group-title">Structure Parameters</div>
+            
+            <div class="slider-row">
+                <div class="slider-label">
+                    <span>Barrier Height (V₀)</span>
+                    <span class="slider-val" id="val-V0">0.30 eV</span>
+                </div>
+                <input type="range" id="sld-V0" min="0.10" max="1.20" step="0.01" value="0.30">
+            </div>
+
+            <div class="slider-row">
+                <div class="slider-label">
+                    <span>Barrier Thickness (L_b)</span>
+                    <span class="slider-val" id="val-Lb">3.00 nm</span>
+                </div>
+                <input type="range" id="sld-Lb" min="1.0" max="7.0" step="0.1" value="3.0">
+            </div>
+
+            <div class="slider-row">
+                <div class="slider-label">
+                    <span>Well Width (L_w)</span>
+                    <span class="slider-val" id="val-Lw">5.00 nm</span>
+                </div>
+                <input type="range" id="sld-Lw" min="2.0" max="12.0" step="0.1" value="5.0">
+            </div>
+        </div>
+
+        <!-- Diode Bias & Incident Energy -->
+        <div class="control-group">
+            <div class="group-title">Transport & Diode Bias</div>
+
+            <div class="slider-row">
+                <div class="slider-label">
+                    <span>Applied Diode Bias (V_a)</span>
+                    <span class="slider-val" id="val-Va">0.000 V</span>
+                </div>
+                <input type="range" id="sld-Va" min="0.00" max="0.35" step="0.002" value="0.00">
+            </div>
+
+            <div class="slider-row">
+                <div class="slider-label">
+                    <span>Incident Energy (E)</span>
+                    <span class="slider-val" id="val-E">0.088 eV</span>
+                </div>
+                <input type="range" id="sld-E" min="0.005" max="0.50" step="0.001" value="0.088">
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="btn-group">
+            <button class="btn-primary" id="btn-snap">⚡ Auto-Snap to Resonant Peak</button>
+            <button id="btn-anim-toggle">▶ Animate 3D Wavepacket</button>
+            <button id="btn-reset">↺ Reset to Default (GaAs/AlGaAs)</button>
+        </div>
+
+        <div style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; margin-top: auto;">
+            <strong>Physics Engine:</strong> Transfer Matrix Method (TMM) with BenDaniel-Duke conditions & Tsu-Esaki diode integration.
+        </div>
+    </div>
+
+    <!-- Main Workspace -->
+    <div id="main-workspace">
+        
+        <!-- Top Row: 3D Quantum View & Readout -->
+        <div class="top-row">
+            
+            <!-- 3D Canvas -->
+            <div class="card" style="padding: 0;">
+                <div id="three-container"></div>
+                <div class="three-overlay">
+                    <strong>3D Quantum Cavity View</strong> (Drag to Orbit, Scroll to Zoom)
+                    <div id="three-status" style="color: var(--accent-yellow); margin-top: 3px;">Status: Stationary Wavefunction</div>
+                </div>
+            </div>
+
+            <!-- Physical Readout & Status -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">🔬 Quantum & Diode Metrics</span>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <span class="metric-title">Resonance E₁</span>
+                        <span class="metric-value" id="m-E1">0.088 eV</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-title">Linewidth Γ</span>
+                        <span class="metric-value" id="m-gamma">0.004 eV</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-title">Lifetime τ</span>
+                        <span class="metric-value" id="m-tau">164 fs</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-title">PVCR Ratio</span>
+                        <span class="metric-value" id="m-pvcr">6.8</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-title">Peak Voltage</span>
+                        <span class="metric-value" id="m-vp">0.140 V</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-title">Peak Current</span>
+                        <span class="metric-value" id="m-jp">1.18×10⁵</span>
+                    </div>
+                </div>
+
+                <div class="status-badge" id="status-badge">
+                    Thermal Equilibrium (Zero Bias)
+                </div>
+
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 10px; line-height: 1.4;">
+                    When $V_a \approx V_p$, the quantum well level aligns with the emitter Fermi sea, creating a huge current peak. At higher bias, the level drops below the emitter band, triggering <strong>Negative Differential Resistance</strong>.
+                </p>
+            </div>
+        </div>
+
+        <!-- Bottom Row: 3 High-DPI 2D Charts -->
+        <div class="bottom-row">
+            
+            <!-- Chart 1: Band Diagram & Wavefunction -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Band Profile & |ψ(x)|²</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="canvas-pot"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 2: Transmission Spectrum T(E) -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Transmission Spectrum T(E)</span>
+                    <button id="btn-log-toggle" style="padding: 2px 8px; font-size: 0.72rem;">Log Scale</button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="canvas-trans"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 3: RTD Diode I-V Curve -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">RTD Diode I-V Curve (NDR)</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="canvas-iv"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Simulation Physics & 3D Engine Script -->
+    <script>
+        // Physical Constants (SI Units)
+        const HBAR = 1.054571817e-34;
+        const M0 = 9.1093837e-31;
+        const E_CH = 1.602176634e-19;
+        const KB = 1.380649e-23;
+        const TEMP = 300.0;
+        const KBT = KB * TEMP;
+        const M_EFF = 0.067 * M0; // GaAs effective mass
+
+        // Simulation State
+        const state = {
+            V0: 0.30,       // eV
+            Lb: 3.00,       // nm
+            Lw: 5.00,       // nm
+            Va: 0.00,       // V
+            E: 0.088,       // eV
+            useLogScale: false,
+            animating: false,
+            wavepacket_t: 0.0,
+            peaks: [],
+            ivData: null
+        };
+
+        // Cache DOM elements
+        const dom = {
+            sldV0: document.getElementById('sld-V0'),
+            sldLb: document.getElementById('sld-Lb'),
+            sldLw: document.getElementById('sld-Lw'),
+            sldVa: document.getElementById('sld-Va'),
+            sldE: document.getElementById('sld-E'),
+            valV0: document.getElementById('val-V0'),
+            valLb: document.getElementById('val-Lb'),
+            valLw: document.getElementById('val-Lw'),
+            valVa: document.getElementById('val-Va'),
+            valE: document.getElementById('val-E'),
+            btnSnap: document.getElementById('btn-snap'),
+            btnAnim: document.getElementById('btn-anim-toggle'),
+            btnReset: document.getElementById('btn-reset'),
+            btnLog: document.getElementById('btn-log-toggle'),
+            statusBadge: document.getElementById('status-badge'),
+            mE1: document.getElementById('m-E1'),
+            mGamma: document.getElementById('m-gamma'),
+            mTau: document.getElementById('m-tau'),
+            mPvcr: document.getElementById('m-pvcr'),
+            mVp: document.getElementById('m-vp'),
+            mJp: document.getElementById('m-jp'),
+            threeStatus: document.getElementById('three-status')
+        };
+
+        // -------------------------------------------------------------
+        // COMPLEX NUMBER ARITHMETIC UTILITIES
+        // -------------------------------------------------------------
+        function c_mul(a, b) {
+            return [a[0]*b[0] - a[1]*b[1], a[0]*b[1] + a[1]*b[0]];
+        }
+        function c_add(a, b) {
+            return [a[0] + b[0], a[1] + b[1]];
+        }
+        function c_sub(a, b) {
+            return [a[0] - b[0], a[1] - b[1]];
+        }
+        function c_div(a, b) {
+            const d = b[0]*b[0] + b[1]*b[1];
+            return [(a[0]*b[0] + a[1]*b[1])/d, (a[1]*b[0] - a[0]*b[1])/d];
+        }
+        function c_abs_sq(a) {
+            return a[0]*a[0] + a[1]*a[1];
+        }
+        function c_sqrt(a) {
+            const r = Math.sqrt(a[0]*a[0] + a[1]*a[1]);
+            const theta = Math.atan2(a[1], a[0]);
+            return [Math.sqrt(r) * Math.cos(theta/2), Math.sqrt(r) * Math.sin(theta/2)];
+        }
+        function c_cos(z) {
+            return [Math.cos(z[0]) * Math.cosh(z[1]), -Math.sin(z[0]) * Math.sinh(z[1])];
+        }
+        function c_sin(z) {
+            return [Math.sin(z[0]) * Math.cosh(z[1]), Math.cos(z[0]) * Math.sinh(z[1])];
+        }
+
+        // -------------------------------------------------------------
+        // TRANSFER MATRIX METHOD (TMM) ENGINE
+        // -------------------------------------------------------------
+        function calculateTMM(E_eV, V0_eV, Lb_nm, Lw_nm, Va_V, computePsi = false) {
+            const E_J = E_eV * E_CH;
+            const V0_J = V0_eV * E_CH;
+            const Va_J = Va_V * E_CH;
+            const Lb_m = Lb_nm * 1e-9;
+            const Lw_m = Lw_nm * 1e-9;
+            const L_tot = 2 * Lb_m + Lw_m;
+
+            if (E_J <= 0) return { T: 0, R: 1 };
+
+            const k_L = [Math.sqrt(2 * M_EFF * E_J) / HBAR, 0];
+            const k_R_sq = 2 * M_EFF * (E_J + Va_J);
+            const k_R = k_R_sq >= 0 ? [Math.sqrt(k_R_sq) / HBAR, 0] : [0, Math.sqrt(-k_R_sq) / HBAR];
+
+            const alpha_L = [-k_L[1] / M_EFF, k_L[0] / M_EFF];
+            const alpha_R = [-k_R[1] / M_EFF, k_R[0] / M_EFF];
+
+            const N_slices = 50;
+            const dx = L_tot / N_slices;
+
+            let M00 = [1, 0], M01 = [0, 0], M10 = [0, 0], M11 = [1, 0];
+            const sliceMatrices = computePsi ? [] : null;
+
+            for (let i = 0; i < N_slices; i++) {
+                const x = (i + 0.5) * dx;
+                let V_flat = 0.0;
+                if (x < Lb_m || x > Lb_m + Lw_m) {
+                    V_flat = V0_J;
+                }
+                const V_x = V_flat - Va_J * (x / L_tot);
+
+                const arg = [2 * M_EFF * (E_J - V_x), 0];
+                const kj = c_div(c_sqrt(arg), [HBAR, 0]);
+                const kd = [kj[0] * dx, kj[1] * dx];
+
+                const cos_kd = c_cos(kd);
+                const sin_kd = c_sin(kd);
+
+                let sinc_kd;
+                if (c_abs_sq(kd) < 1e-10) {
+                    sinc_kd = [dx, 0];
+                } else {
+                    sinc_kd = c_div(sin_kd, kj);
+                }
+
+                const A00 = cos_kd;
+                const A01 = [M_EFF * sinc_kd[0], M_EFF * sinc_kd[1]];
+                const kj_sq = c_mul(kj, kj);
+                const kj_sq_over_m = [kj_sq[0] / M_EFF, kj_sq[1] / M_EFF];
+                const term10 = c_mul(kj_sq_over_m, sinc_kd);
+                const A10 = [-term10[0], -term10[1]];
+                const A11 = cos_kd;
+
+                if (computePsi) {
+                    sliceMatrices.push({ A00, A01, A10, A11, x_nm: x * 1e9, V_eV: V_x / E_CH });
+                }
+
+                // M = A * M
+                const N00 = c_add(c_mul(A00, M00), c_mul(A01, M10));
+                const N01 = c_add(c_mul(A00, M01), c_mul(A01, M11));
+                const N10 = c_add(c_mul(A10, M00), c_mul(A11, M10));
+                const N11 = c_add(c_mul(A10, M01), c_mul(A11, M11));
+
+                M00 = N00; M01 = N01; M10 = N10; M11 = N11;
+            }
+
+            // Invert M
+            const detM = c_sub(c_mul(M00, M11), c_mul(M01, M10));
+            const invM00 = c_div(M11, detM);
+            const invM01 = c_div([-M01[0], -M01[1]], detM);
+            const invM10 = c_div([-M10[0], -M10[1]], detM);
+            const invM11 = c_div(M00, detM);
+
+            const u1 = c_add(invM00, c_mul(invM01, alpha_R));
+            const u2 = c_add(invM10, c_mul(invM11, alpha_R));
+
+            const denom = c_add(c_mul(alpha_L, u1), u2);
+            const t_coeff = c_div([2 * alpha_L[0], 2 * alpha_L[1]], denom);
+            const r_coeff = c_sub(c_mul(t_coeff, u1), [1, 0]);
+
+            let T = (k_R[0] / k_L[0]) * c_abs_sq(t_coeff);
+            let R = c_abs_sq(r_coeff);
+            T = Math.max(0, Math.min(1, T));
+
+            if (!computePsi) {
+                return { T, R };
+            }
+
+            // Reconstruct Wavefunction across contacts and active slices
+            const Lc_nm = 5.0;
+            const x_arr = [];
+            const V_arr = [];
+            const psi_sq = [];
+
+            // Emitter contact (x <= 0)
+            const n_c = 40;
+            for (let i = 0; i < n_c; i++) {
+                const x_nm = -Lc_nm + (Lc_nm * i) / (n_c - 1);
+                const x_m = x_nm * 1e-9;
+                // exp(i*kL*x) + r * exp(-i*kL*x)
+                const phi1 = k_L[0] * x_m;
+                const e_inc = [Math.cos(phi1), Math.sin(phi1)];
+                const e_ref = [Math.cos(-phi1), Math.sin(-phi1)];
+                const r_term = c_mul(r_coeff, e_ref);
+                const psi = c_add(e_inc, r_term);
+
+                x_arr.push(x_nm);
+                V_arr.push(0.0);
+                psi_sq.push(c_abs_sq(psi));
+            }
+
+            // Active region slices
+            let st = [c_add([1, 0], r_coeff), c_mul(alpha_L, c_sub([1, 0], r_coeff))];
+            for (let i = 0; i < N_slices; i++) {
+                const sl = sliceMatrices[i];
+                const s0 = c_add(c_mul(sl.A00, st[0]), c_mul(sl.A01, st[1]));
+                const s1 = c_add(c_mul(sl.A10, st[0]), c_mul(sl.A11, st[1]));
+                st = [s0, s1];
+
+                x_arr.push(sl.x_nm);
+                V_arr.push(sl.V_eV);
+                psi_sq.push(c_abs_sq(st[0]));
+            }
+
+            // Collector contact (x >= L_tot)
+            const L_tot_nm = L_tot * 1e9;
+            for (let i = 0; i < n_c; i++) {
+                const x_nm = L_tot_nm + (Lc_nm * i) / (n_c - 1);
+                const x_m = (x_nm - L_tot_nm) * 1e-9;
+                const phi = k_R[0] * x_m;
+                const e_trans = [Math.cos(phi), Math.sin(phi)];
+                const psi = c_mul(t_coeff, e_trans);
+
+                x_arr.push(x_nm);
+                V_arr.push(-Va_V);
+                psi_sq.push(c_abs_sq(psi));
+            }
+
+            return { T, R, x_arr, V_arr, psi_sq, t_coeff, r_coeff };
+        }
+
+        // -------------------------------------------------------------
+        // TSU-ESAKI DIODE I-V SOLVER
+        // -------------------------------------------------------------
+        function calculateRTD_IV(V0_eV, Lb_nm, Lw_nm) {
+            const EF_J = 0.04 * E_CH; // 40 meV
+            const nV = 36;
+            const nE = 45;
+            const V_max = 0.35;
+
+            const V_arr = [];
+            const J_arr = [];
+            const E_max_eV = Math.max(V0_eV * 1.05, 0.25);
+            const dE_eV = E_max_eV / nE;
+            const dE_J = dE_eV * E_CH;
+
+            const J0 = (E_CH * M_EFF * KBT) / (2 * Math.PI * Math.PI * Math.pow(HBAR, 3));
+
+            for (let iv = 0; iv < nV; iv++) {
+                const Va = (V_max * iv) / (nV - 1);
+                V_arr.push(Va);
+                if (Va === 0) {
+                    J_arr.push(0);
+                    continue;
+                }
+
+                let J_sum = 0;
+                for (let ie = 1; ie <= nE; ie++) {
+                    const E_eV = ie * dE_eV;
+                    const E_J = E_eV * E_CH;
+                    const res = calculateTMM(E_eV, V0_eV, Lb_nm, Lw_nm, Va, false);
+
+                    const arg1 = (EF_J - E_J) / KBT;
+                    const arg2 = (EF_J - E_J - E_CH * Va) / KBT;
+
+                    const s1 = arg1 > 30 ? arg1 : Math.log(1 + Math.exp(arg1));
+                    const s2 = arg2 > 30 ? arg2 : (arg2 < -30 ? 0 : Math.log(1 + Math.exp(arg2)));
+                    const supply = Math.max(0, s1 - s2);
+
+                    J_sum += res.T * supply * dE_J;
+                }
+
+                const J_A_cm2 = (J0 * J_sum) * 1e-4; // Convert to A/cm^2
+                J_arr.push(J_A_cm2);
+            }
+
+            // Find Peak and Valley
+            let J_peak = 0, idx_p = 0;
+            for (let i = 0; i < nV; i++) {
+                if (J_arr[i] > J_peak) {
+                    J_peak = J_arr[i];
+                    idx_p = i;
+                }
+            }
+            const V_peak = V_arr[idx_p];
+
+            let J_valley = J_peak, idx_v = idx_p;
+            for (let i = idx_p; i < nV; i++) {
+                if (J_arr[i] < J_valley) {
+                    J_valley = J_arr[i];
+                    idx_v = i;
+                }
+            }
+            const V_valley = V_arr[idx_v];
+            const pvcr = J_valley > 0 ? (J_peak / J_valley) : 1.0;
+
+            return { V_arr, J_arr, V_peak, J_peak, V_valley, J_valley, pvcr, idx_p, idx_v };
+        }
+
+        // -------------------------------------------------------------
+        // HIGH-DPI 2D CANVAS RENDERING
+        // -------------------------------------------------------------
+        function setupCanvasDPI(canvas) {
+            const rect = canvas.getBoundingClientRect();
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            const ctx = canvas.getContext('2d');
+            ctx.scale(dpr, dpr);
+            return { ctx, width: rect.width, height: rect.height };
+        }
+
+        function drawBandProfile(canvas, sim) {
+            const { ctx, width, height } = setupCanvasDPI(canvas);
+            ctx.clearRect(0, 0, width, height);
+
+            const pad = { top: 25, bottom: 35, left: 45, right: 20 };
+            const w = width - pad.left - pad.right;
+            const h = height - pad.top - pad.bottom;
+
+            const x_min = sim.x_arr[0];
+            const x_max = sim.x_arr[sim.x_arr.length - 1];
+            const y_min = -state.Va - 0.05;
+            const y_max = state.V0 * 1.35;
+
+            const mapX = x => pad.left + ((x - x_min) / (x_max - x_min)) * w;
+            const mapY = y => pad.top + h - ((y - y_min) / (y_max - y_min)) * h;
+
+            // Draw barrier regions
+            ctx.fillStyle = 'rgba(239, 68, 68, 0.2)';
+            ctx.fillRect(mapX(0), mapY(state.V0), mapX(state.Lb) - mapX(0), mapY(0) - mapY(state.V0));
+            const x2_s = state.Lb + state.Lw;
+            const x2_e = x2_s + state.Lb;
+            ctx.fillRect(mapX(x2_s), mapY(state.V0), mapX(x2_e) - mapX(x2_s), mapY(0) - mapY(state.V0));
+
+            // Grid
+            ctx.strokeStyle = '#334155';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(pad.left, mapY(0)); ctx.lineTo(pad.left + w, mapY(0));
+            ctx.stroke();
+
+            // Potential Profile Line
+            ctx.strokeStyle = '#f8fafc';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            for (let i = 0; i < sim.x_arr.length; i++) {
+                const px = mapX(sim.x_arr[i]);
+                const py = mapY(sim.V_arr[i]);
+                if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+            }
+            ctx.stroke();
+
+            // Incident Energy dashed line
+            ctx.strokeStyle = '#38bdf8';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(pad.left, mapY(state.E)); ctx.lineTo(pad.left + w, mapY(state.E));
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Probability Density |psi(x)|^2
+            const max_psi = Math.max(...sim.psi_sq, 1e-4);
+            const scale = 0.09 / max_psi;
+
+            ctx.fillStyle = 'rgba(56, 189, 248, 0.15)';
+            ctx.beginPath();
+            ctx.moveTo(mapX(sim.x_arr[0]), mapY(state.E));
+            for (let i = 0; i < sim.x_arr.length; i++) {
+                ctx.lineTo(mapX(sim.x_arr[i]), mapY(state.E + sim.psi_sq[i] * scale));
+            }
+            ctx.lineTo(mapX(sim.x_arr[sim.x_arr.length - 1]), mapY(state.E));
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.strokeStyle = '#38bdf8';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            for (let i = 0; i < sim.x_arr.length; i++) {
+                const px = mapX(sim.x_arr[i]);
+                const py = mapY(state.E + sim.psi_sq[i] * scale);
+                if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+            }
+            ctx.stroke();
+
+            // Labels
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '10px sans-serif';
+            ctx.fillText(`${x_min.toFixed(0)} nm`, pad.left, height - 12);
+            ctx.fillText(`${x_max.toFixed(0)} nm`, pad.left + w - 25, height - 12);
+            ctx.fillText('Position x', pad.left + w / 2 - 20, height - 12);
+            ctx.fillText(`${state.V0.toFixed(2)} eV`, 5, mapY(state.V0) + 4);
+            ctx.fillText('0 eV', 15, mapY(0) + 4);
+            ctx.fillStyle = '#38bdf8';
+            ctx.fillText(`E = ${state.E.toFixed(3)} eV`, pad.left + 5, mapY(state.E) - 5);
+        }
+
+        function drawTransmissionSpectrum(canvas, spec) {
+            const { ctx, width, height } = setupCanvasDPI(canvas);
+            ctx.clearRect(0, 0, width, height);
+
+            const pad = { top: 25, bottom: 35, left: 45, right: 20 };
+            const w = width - pad.left - pad.right;
+            const h = height - pad.top - pad.bottom;
+
+            const E_max = state.V0 * 1.25;
+            const mapX = e => pad.left + (e / E_max) * w;
+            const mapY = t => state.useLogScale 
+                ? pad.top + h - ((Math.log10(Math.max(1e-5, t)) + 5) / 5) * h
+                : pad.top + h - Math.min(1.0, t) * h;
+
+            // Axes
+            ctx.strokeStyle = '#334155';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(pad.left, pad.top); ctx.lineTo(pad.left, pad.top + h); ctx.lineTo(pad.left + w, pad.top + h);
+            ctx.stroke();
+
+            // Spectrum Curve
+            ctx.strokeStyle = '#4ade80';
+            ctx.lineWidth = 2.2;
+            ctx.beginPath();
+            for (let i = 0; i < spec.length; i++) {
+                const px = mapX(spec[i].E);
+                const py = mapY(spec[i].T);
+                if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+            }
+            ctx.stroke();
+
+            // Mark Detected Peaks
+            ctx.fillStyle = '#fbbf24';
+            ctx.font = 'bold 10px sans-serif';
+            state.peaks.forEach((pk, idx) => {
+                const px = mapX(pk.E);
+                const py = mapY(pk.T);
+                ctx.beginPath();
+                ctx.arc(px, py, 4, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillText(`E${idx+1}=${pk.E.toFixed(3)}eV`, px - 25, py - 8);
+            });
+
+            // Operating incident energy marker
+            const cur_T = calculateTMM(state.E, state.V0, state.Lb, state.Lw, state.Va, false).T;
+            ctx.fillStyle = '#38bdf8';
+            ctx.beginPath();
+            ctx.arc(mapX(state.E), mapY(cur_T), 5, 0, 2 * Math.PI);
+            ctx.fill();
+
+            ctx.strokeStyle = '#38bdf8';
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(mapX(state.E), pad.top); ctx.lineTo(mapX(state.E), pad.top + h);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Labels
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '10px sans-serif';
+            ctx.fillText('0', pad.left - 10, pad.top + h + 2);
+            ctx.fillText(state.useLogScale ? '1.0' : '1.0', pad.left - 25, pad.top + 10);
+            ctx.fillText('Energy E [eV]', pad.left + w / 2 - 30, height - 12);
+            ctx.fillText(`${E_max.toFixed(2)} eV`, pad.left + w - 35, height - 12);
+        }
+
+        function drawIVCurve(canvas, iv) {
+            const { ctx, width, height } = setupCanvasDPI(canvas);
+            ctx.clearRect(0, 0, width, height);
+
+            const pad = { top: 25, bottom: 35, left: 55, right: 20 };
+            const w = width - pad.left - pad.right;
+            const h = height - pad.top - pad.bottom;
+
+            const V_max = iv.V_arr[iv.V_arr.length - 1];
+            const J_max = Math.max(...iv.J_arr, 1) * 1.15;
+
+            const mapX = v => pad.left + (v / V_max) * w;
+            const mapY = j => pad.top + h - (j / J_max) * h;
+
+            // Highlight NDR Region in translucent red
+            if (iv.V_valley > iv.V_peak) {
+                const x_pk = mapX(iv.V_peak);
+                const x_vl = mapX(iv.V_valley);
+                ctx.fillStyle = 'rgba(248, 113, 113, 0.2)';
+                ctx.fillRect(x_pk, pad.top, x_vl - x_pk, h);
+
+                ctx.fillStyle = '#f87171';
+                ctx.font = 'bold 10px sans-serif';
+                ctx.fillText('NDR (dI/dV < 0)', (x_pk + x_vl)/2 - 38, pad.top + 20);
+            }
+
+            // Grid & Axes
+            ctx.strokeStyle = '#334155';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(pad.left, pad.top); ctx.lineTo(pad.left, pad.top + h); ctx.lineTo(pad.left + w, pad.top + h);
+            ctx.stroke();
+
+            // I-V Curve Line
+            ctx.strokeStyle = '#4ade80';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            for (let i = 0; i < iv.V_arr.length; i++) {
+                const px = mapX(iv.V_arr[i]);
+                const py = mapY(iv.J_arr[i]);
+                if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+            }
+            ctx.stroke();
+
+            // Mark Peak and Valley
+            ctx.fillStyle = '#fbbf24';
+            ctx.beginPath(); ctx.arc(mapX(iv.V_peak), mapY(iv.J_peak), 5, 0, 2 * Math.PI); ctx.fill();
+            ctx.fillText('Peak', mapX(iv.V_peak) - 12, mapY(iv.J_peak) - 8);
+
+            ctx.fillStyle = '#c084fc';
+            ctx.beginPath(); ctx.arc(mapX(iv.V_valley), mapY(iv.J_valley), 5, 0, 2 * Math.PI); ctx.fill();
+            ctx.fillText('Valley', mapX(iv.V_valley) - 14, mapY(iv.J_valley) + 16);
+
+            // Current Operating Bias Point
+            // Interpolate J at current Va
+            let cur_J = 0;
+            for (let i = 0; i < iv.V_arr.length - 1; i++) {
+                if (state.Va >= iv.V_arr[i] && state.Va <= iv.V_arr[i+1]) {
+                    const frac = (state.Va - iv.V_arr[i]) / (iv.V_arr[i+1] - iv.V_arr[i]);
+                    cur_J = iv.J_arr[i] + frac * (iv.J_arr[i+1] - iv.J_arr[i]);
+                    break;
+                }
+            }
+            ctx.fillStyle = '#38bdf8';
+            ctx.beginPath(); ctx.arc(mapX(state.Va), mapY(cur_J), 6, 0, 2 * Math.PI); ctx.fill();
+
+            // Labels
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '10px sans-serif';
+            ctx.fillText('Bias V_a [V]', pad.left + w / 2 - 25, height - 12);
+            ctx.fillText(`${V_max.toFixed(2)} V`, pad.left + w - 35, height - 12);
+            ctx.fillText('J [A/cm²]', 10, pad.top + 10);
+            ctx.fillText(`${(J_max/1e4).toFixed(0)}e4`, 10, pad.top + 24);
+        }
+
+        // -------------------------------------------------------------
+        // 3D QUANTUM CAVITY VISUALIZATION (Three.js with Canvas Fallback)
+        // -------------------------------------------------------------
+        let isThreeLoaded = false;
+        let scene, camera, renderer, controls;
+        let barrierMesh1, barrierMesh2, waveMesh, waveGeometry;
+        let canvas3D, ctx3D;
+        let camAngleX = 0.55, camAngleY = -0.65, camZoom = 1.0;
+        let isDragging3D = false, lastMouseX = 0, lastMouseY = 0;
+        let lastSimData = null;
+
+        function initThreeJS() {
+            const container = document.getElementById('three-container');
+            const w = container.clientWidth || 600;
+            const h = container.clientHeight || 350;
+
+            if (typeof THREE !== 'undefined' && typeof THREE.OrbitControls !== 'undefined') {
+                try {
+                    isThreeLoaded = true;
+                    scene = new THREE.Scene();
+                    scene.background = new THREE.Color(0x080c14);
+
+                    camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
+                    camera.position.set(-8, 12, 18);
+
+                    renderer = new THREE.WebGLRenderer({ antialias: true });
+                    renderer.setSize(w, h);
+                    renderer.setPixelRatio(window.devicePixelRatio || 1);
+                    container.appendChild(renderer.domElement);
+
+                    controls = new THREE.OrbitControls(camera, renderer.domElement);
+                    controls.enableDamping = true;
+                    controls.dampingFactor = 0.05;
+
+                    // Lights
+                    const ambient = new THREE.AmbientLight(0xffffff, 0.5);
+                    scene.add(ambient);
+                    const dirLight = new THREE.DirectionalLight(0x38bdf8, 0.8);
+                    dirLight.position.set(10, 20, 10);
+                    scene.add(dirLight);
+
+                    // Floor Grid
+                    const grid = new THREE.GridHelper(30, 30, 0x1e293b, 0x0f172a);
+                    grid.position.y = -0.01;
+                    scene.add(grid);
+
+                    // Barrier Meshes
+                    const matBarrier = new THREE.MeshPhongMaterial({
+                        color: 0xef4444,
+                        transparent: true,
+                        opacity: 0.35,
+                        shininess: 60,
+                        side: THREE.DoubleSide
+                    });
+                    barrierMesh1 = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), matBarrier);
+                    barrierMesh2 = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), matBarrier);
+                    scene.add(barrierMesh1);
+                    scene.add(barrierMesh2);
+
+                    // Wave Surface
+                    const nx = 90, ny = 35;
+                    waveGeometry = new THREE.PlaneGeometry(24, 10, nx - 1, ny - 1);
+                    waveGeometry.rotateX(-Math.PI / 2);
+
+                    const matWave = new THREE.MeshPhongMaterial({
+                        color: 0x38bdf8,
+                        emissive: 0x0369a1,
+                        wireframe: true,
+                        shininess: 80,
+                        side: THREE.DoubleSide
+                    });
+                    waveMesh = new THREE.Mesh(waveGeometry, matWave);
+                    scene.add(waveMesh);
+
+                    window.addEventListener('resize', () => {
+                        const nw = container.clientWidth;
+                        const nh = container.clientHeight;
+                        camera.aspect = nw / nh;
+                        camera.updateProjectionMatrix();
+                        renderer.setSize(nw, nh);
+                    });
+
+                    animateThreeJS();
+                    return;
+                } catch (e) {
+                    console.warn("Three.js initialization failed, switching to native Canvas 3D:", e);
+                }
+            }
+
+            // Fallback to Native Canvas 3D Renderer (Works 100% Offline with zero external dependencies)
+            initCanvas3D(container, w, h);
+        }
+
+        function initCanvas3D(container, w, h) {
+            isThreeLoaded = false;
+            canvas3D = document.createElement('canvas');
+            canvas3D.style.width = '100%';
+            canvas3D.style.height = '100%';
+            canvas3D.style.cursor = 'grab';
+            container.appendChild(canvas3D);
+
+            canvas3D.addEventListener('mousedown', e => {
+                isDragging3D = true;
+                lastMouseX = e.clientX;
+                lastMouseY = e.clientY;
+                canvas3D.style.cursor = 'grabbing';
+            });
+            window.addEventListener('mousemove', e => {
+                if (!isDragging3D) return;
+                const dx = e.clientX - lastMouseX;
+                const dy = e.clientY - lastMouseY;
+                camAngleY += dx * 0.008;
+                camAngleX = Math.max(0.1, Math.min(1.5, camAngleX + dy * 0.008));
+                lastMouseX = e.clientX;
+                lastMouseY = e.clientY;
+                if (lastSimData) renderCanvas3D(lastSimData);
+            });
+            window.addEventListener('mouseup', () => {
+                isDragging3D = false;
+                if (canvas3D) canvas3D.style.cursor = 'grab';
+            });
+            canvas3D.addEventListener('wheel', e => {
+                e.preventDefault();
+                camZoom = Math.max(0.5, Math.min(2.5, camZoom * (e.deltaY > 0 ? 0.92 : 1.08)));
+                if (lastSimData) renderCanvas3D(lastSimData);
+            });
+
+            animateCanvas3D();
+        }
+
+        function project3D(x, y, z, cx, cy, scale) {
+            const x1 = x * Math.cos(camAngleY) + z * Math.sin(camAngleY);
+            const z1 = -x * Math.sin(camAngleY) + z * Math.cos(camAngleY);
+            const y2 = y * Math.cos(camAngleX) - z1 * Math.sin(camAngleX);
+            const z2 = y * Math.sin(camAngleX) + z1 * Math.cos(camAngleX);
+            const dist = 30;
+            const factor = (dist / (dist + z2)) * scale * camZoom;
+            return {
+                x: cx + x1 * factor,
+                y: cy - y2 * factor,
+                z: z2
+            };
+        }
+
+        function renderCanvas3D(sim) {
+            if (!canvas3D) return;
+            const { ctx, width, height } = setupCanvasDPI(canvas3D);
+            ctx.clearRect(0, 0, width, height);
+
+            const cx = width / 2;
+            const cy = height / 2 + 30;
+            const scale = 20;
+
+            // 1. Draw 3D Ground Grid
+            ctx.strokeStyle = '#1e293b';
+            ctx.lineWidth = 1;
+            for (let g = -10; g <= 10; g += 2) {
+                const p1 = project3D(g, 0, -8, cx, cy, scale);
+                const p2 = project3D(g, 0, 8, cx, cy, scale);
+                ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
+
+                const p3 = project3D(-10, 0, g, cx, cy, scale);
+                const p4 = project3D(10, 0, g, cx, cy, scale);
+                ctx.beginPath(); ctx.moveTo(p3.x, p3.y); ctx.lineTo(p4.x, p4.y); ctx.stroke();
+            }
+
+            // 2. Draw 3D Potential Barrier Blocks (Translucent Red)
+            const Lb = state.Lb;
+            const Lw = state.Lw;
+            const V0 = state.V0 * 3.5;
+            const center_x = (2 * Lb + Lw) / 2;
+
+            draw3DBox(ctx, (Lb/2) - center_x, V0/2, 0, Lb, V0, 6, cx, cy, scale);
+            draw3DBox(ctx, (Lb + Lw + Lb/2) - center_x, V0/2, 0, Lb, V0, 6, cx, cy, scale);
+
+            // 3. Draw 3D Wavefunction Height Surface
+            const nx = 45;
+            const ny = 15;
+            const max_psi = Math.max(...sim.psi_sq, 1e-4);
+
+            ctx.lineWidth = 1.2;
+            for (let iy = 0; iy < ny; iy++) {
+                const y_norm = (iy / (ny - 1)) * 2 - 1;
+                const env = Math.exp(-y_norm * y_norm * 3);
+                const y_3d = y_norm * 3.0;
+
+                ctx.strokeStyle = `rgba(56, 189, 248, ${0.4 + 0.5 * env})`;
+                ctx.beginPath();
+
+                for (let ix = 0; ix < nx; ix++) {
+                    const x_norm = ix / (nx - 1);
+                    const sim_idx = Math.floor(x_norm * (sim.psi_sq.length - 1));
+                    const x_3d = (x_norm * 20) - 10;
+
+                    let h_val = 0;
+                    if (state.animating) {
+                        const phase = state.wavepacket_t * 6;
+                        h_val = Math.max(0, Math.sin(phase) * (sim.psi_sq[sim_idx] / max_psi)) * 3.5 * env;
+                    } else {
+                        h_val = (sim.psi_sq[sim_idx] / max_psi) * 3.5 * env;
+                    }
+
+                    const pt = project3D(x_3d, h_val, y_3d, cx, cy, scale);
+                    if (ix === 0) ctx.moveTo(pt.x, pt.y); else ctx.lineTo(pt.x, pt.y);
+                }
+                ctx.stroke();
+            }
+        }
+
+        function draw3DBox(ctx, x, y, z, w, h, d, cx, cy, scale) {
+            const hw = w/2, hh = h/2, hd = d/2;
+            const corners = [
+                project3D(x - hw, y - hh, z - hd, cx, cy, scale),
+                project3D(x + hw, y - hh, z - hd, cx, cy, scale),
+                project3D(x + hw, y + hh, z - hd, cx, cy, scale),
+                project3D(x - hw, y + hh, z - hd, cx, cy, scale),
+                project3D(x - hw, y - hh, z + hd, cx, cy, scale),
+                project3D(x + hw, y - hh, z + hd, cx, cy, scale),
+                project3D(x + hw, y + hh, z + hd, cx, cy, scale),
+                project3D(x - hw, y + hh, z + hd, cx, cy, scale)
+            ];
+
+            ctx.fillStyle = 'rgba(239, 68, 68, 0.35)';
+            ctx.strokeStyle = '#ef4444';
+            ctx.lineWidth = 1.2;
+            ctx.beginPath();
+            ctx.moveTo(corners[3].x, corners[3].y);
+            ctx.lineTo(corners[2].x, corners[2].y);
+            ctx.lineTo(corners[6].x, corners[6].y);
+            ctx.lineTo(corners[7].x, corners[7].y);
+            ctx.closePath();
+            ctx.fill(); ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(corners[4].x, corners[4].y);
+            ctx.lineTo(corners[5].x, corners[5].y);
+            ctx.lineTo(corners[6].x, corners[6].y);
+            ctx.lineTo(corners[7].x, corners[7].y);
+            ctx.closePath();
+            ctx.fill(); ctx.stroke();
+        }
+
+        function updateThreeJS(sim) {
+            lastSimData = sim;
+            if (!isThreeLoaded) {
+                renderCanvas3D(sim);
+                return;
+            }
+            if (!barrierMesh1) return;
+
+            const Lb = state.Lb;
+            const Lw = state.Lw;
+            const V0 = state.V0 * 4;
+            const y_span = 8;
+            const center_x = (2 * Lb + Lw) / 2;
+
+            const b1_x = (Lb / 2) - center_x;
+            barrierMesh1.scale.set(Lb, V0, y_span);
+            barrierMesh1.position.set(b1_x, V0 / 2, 0);
+
+            const b2_x = (Lb + Lw + Lb / 2) - center_x;
+            barrierMesh2.scale.set(Lb, V0, y_span);
+            barrierMesh2.position.set(b2_x, V0 / 2, 0);
+
+            const pos = waveGeometry.attributes.position;
+            const nx = 90, ny = 35;
+            const max_psi = Math.max(...sim.psi_sq, 1e-4);
+
+            for (let iy = 0; iy < ny; iy++) {
+                const y_norm = (iy / (ny - 1)) * 2 - 1;
+                const trans_envelope = Math.exp(-y_norm * y_norm * 3);
+
+                for (let ix = 0; ix < nx; ix++) {
+                    const idx = iy * nx + ix;
+                    const x_norm = ix / (nx - 1);
+                    const sim_idx = Math.floor(x_norm * (sim.psi_sq.length - 1));
+                    let z_val = 0;
+
+                    if (state.animating) {
+                        const phase = state.wavepacket_t * 6;
+                        const standing = Math.sin(phase) * (sim.psi_sq[sim_idx] / max_psi);
+                        z_val = Math.max(0, standing) * 3.5 * trans_envelope;
+                    } else {
+                        z_val = (sim.psi_sq[sim_idx] / max_psi) * 3.5 * trans_envelope;
+                    }
+
+                    pos.setY(idx, z_val);
+                }
+            }
+            pos.needsUpdate = true;
+            waveGeometry.computeVertexNormals();
+        }
+
+        function animateThreeJS() {
+            requestAnimationFrame(animateThreeJS);
+            if (controls) controls.update();
+
+            if (state.animating) {
+                state.wavepacket_t += 0.03;
+                const sim = calculateTMM(state.E, state.V0, state.Lb, state.Lw, state.Va, true);
+                updateThreeJS(sim);
+            }
+
+            if (renderer && scene && camera) {
+                renderer.render(scene, camera);
+            }
+        }
+
+        function animateCanvas3D() {
+            if (state.animating && lastSimData) {
+                state.wavepacket_t += 0.03;
+                renderCanvas3D(lastSimData);
+            }
+            requestAnimationFrame(animateCanvas3D);
+        }
+
+        // -------------------------------------------------------------
+        // MAIN SIMULATION UPDATE COORDINATOR
+        // -------------------------------------------------------------
+        function updateSimulation(recalcIV = true) {
+            // Update labels
+            dom.valV0.innerText = `${state.V0.toFixed(2)} eV`;
+            dom.valLb.innerText = `${state.Lb.toFixed(2)} nm`;
+            dom.valLw.innerText = `${state.Lw.toFixed(2)} nm`;
+            dom.valVa.innerText = `${state.Va.toFixed(3)} V`;
+            dom.valE.innerText = `${state.E.toFixed(3)} eV`;
+
+            // Compute Transmission Spectrum T(E)
+            const n_pts = 160;
+            const E_max = state.V0 * 1.25;
+            const spec = [];
+            state.peaks = [];
+
+            for (let i = 1; i <= n_pts; i++) {
+                const E_cur = (E_max * i) / n_pts;
+                const res = calculateTMM(E_cur, state.V0, state.Lb, state.Lw, state.Va, false);
+                spec.push({ E: E_cur, T: res.T });
+
+                // Detect peaks
+                if (i >= 3) {
+                    const y1 = spec[i-3].T, y2 = spec[i-2].T, y3 = spec[i-1].T;
+                    if (y2 > y1 && y2 >= y3 && y2 > 0.05) {
+                        state.peaks.push({ E: spec[i-2].E, T: y2 });
+                    }
+                }
+            }
+
+            // Compute Wavefunction at state.E
+            const sim = calculateTMM(state.E, state.V0, state.Lb, state.Lw, state.Va, true);
+
+            // Compute or reuse I-V curve
+            if (recalcIV || !state.ivData) {
+                state.ivData = calculateRTD_IV(state.V0, state.Lb, state.Lw);
+            }
+            const iv = state.ivData;
+
+            // Render 2D Charts
+            drawBandProfile(document.getElementById('canvas-pot'), sim);
+            drawTransmissionSpectrum(document.getElementById('canvas-trans'), spec);
+            drawIVCurve(document.getElementById('canvas-iv'), iv);
+
+            // Update 3D Three.js
+            updateThreeJS(sim);
+
+            // Update Metrics Readout
+            if (state.peaks.length > 0) {
+                const pk1 = state.peaks[0];
+                dom.mE1.innerText = `${pk1.E.toFixed(3)} eV`;
+                // Linewidth estimate
+                const gamma = 0.003 * (3.0 / state.Lb);
+                dom.mGamma.innerText = `${gamma.toFixed(3)} eV`;
+                const tau_fs = (HBAR / (gamma * E_CH)) * 1e15;
+                dom.mTau.innerText = `${tau_fs.toFixed(0)} fs`;
+            } else {
+                dom.mE1.innerText = 'None';
+                dom.mGamma.innerText = 'N/A';
+                dom.mTau.innerText = 'N/A';
+            }
+
+            dom.mPvcr.innerText = iv.pvcr.toFixed(1);
+            dom.mVp.innerText = `${iv.V_peak.toFixed(3)} V`;
+            dom.mJp.innerText = `${iv.J_peak.toExponential(2)}`;
+
+            // Update Status Badge
+            const badge = dom.statusBadge;
+            badge.className = 'status-badge';
+
+            if (state.Va < 0.01) {
+                badge.innerText = 'Thermal Equilibrium (Zero Bias)';
+            } else if (Math.abs(state.Va - iv.V_peak) < 0.02) {
+                badge.innerText = '🔥 RESONANT PEAK: Well Level Aligns with Emitter Fermi Sea!';
+                badge.classList.add('resonance');
+            } else if (state.Va > iv.V_peak && state.Va < iv.V_valley) {
+                badge.innerText = '⚡ NEGATIVE DIFFERENTIAL RESISTANCE (NDR Active!)';
+                badge.classList.add('ndr');
+            } else if (state.Va >= iv.V_valley) {
+                badge.innerText = 'Valley Region: Level Dropped Below Emitter Conduction Band';
+            } else {
+                badge.innerText = 'Pre-Resonant Tunneling';
+            }
+        }
+
+        // -------------------------------------------------------------
+        // EVENT LISTENERS
+        // -------------------------------------------------------------
+        dom.sldV0.addEventListener('input', e => { state.V0 = parseFloat(e.target.value); updateSimulation(true); });
+        dom.sldLb.addEventListener('input', e => { state.Lb = parseFloat(e.target.value); updateSimulation(true); });
+        dom.sldLw.addEventListener('input', e => { state.Lw = parseFloat(e.target.value); updateSimulation(true); });
+        dom.sldVa.addEventListener('input', e => { state.Va = parseFloat(e.target.value); updateSimulation(false); });
+        dom.sldE.addEventListener('input', e => { state.E = parseFloat(e.target.value); updateSimulation(false); });
+
+        dom.btnSnap.addEventListener('click', () => {
+            if (state.peaks.length > 0) {
+                // Find peak nearest to current E
+                let nearest = state.peaks[0];
+                let min_diff = Math.abs(nearest.E - state.E);
+                state.peaks.forEach(p => {
+                    const diff = Math.abs(p.E - state.E);
+                    if (diff < min_diff) { min_diff = diff; nearest = p; }
+                });
+                state.E = nearest.E;
+                dom.sldE.value = state.E;
+                updateSimulation(false);
+            }
+        });
+
+        dom.btnAnim.addEventListener('click', () => {
+            state.animating = !state.animating;
+            dom.btnAnim.innerText = state.animating ? '⏸ Pause 3D Wavepacket' : '▶ Animate 3D Wavepacket';
+            dom.btnAnim.classList.toggle('btn-primary', state.animating);
+            dom.threeStatus.innerText = state.animating 
+                ? 'Status: Live Resonant Cavity Oscillation' 
+                : 'Status: Stationary Wavefunction';
+        });
+
+        dom.btnReset.addEventListener('click', () => {
+            state.V0 = 0.30;
+            state.Lb = 3.00;
+            state.Lw = 5.00;
+            state.Va = 0.00;
+            state.E = 0.088;
+            dom.sldV0.value = 0.30;
+            dom.sldLb.value = 3.0;
+            dom.sldLw.value = 5.0;
+            dom.sldVa.value = 0.0;
+            dom.sldE.value = 0.088;
+            updateSimulation(true);
+        });
+
+        dom.btnLog.addEventListener('click', () => {
+            state.useLogScale = !state.useLogScale;
+            dom.btnLog.innerText = state.useLogScale ? 'Linear Scale' : 'Log Scale';
+            updateSimulation(false);
+        });
+
+        // Initialize on window load
+        window.onload = () => {
+            initThreeJS();
+            updateSimulation(true);
+        };
+    </script>
+</body>
+</html>
