@@ -1,5 +1,6 @@
 # Resonant Tunnelling & RTD Diode Simulator
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-brightgreen.svg?style=for-the-badge&logo=github)](https://anantgoel2005.github.io/double-barrier-simulation/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![WebGL 3D](https://img.shields.io/badge/3D%20Graphics-Three.js%20%7C%20WebGL-blue.svg)](https://threejs.org/)
 [![Python](https://img.shields.io/badge/Python-3.x%20(Pure%20Stdlib)-3776AB.svg?logo=python&logoColor=white)](https://www.python.org/)
@@ -7,10 +8,8 @@
 
 A multi-platform quantum simulation laboratory for **Resonant Tunnelling** in double-barrier semiconductor heterostructures (e.g., $\text{Al}_x\text{Ga}_{1-x}\text{As} / \text{GaAs} / \text{Al}_x\text{Ga}_{1-x}\text{As}$) and its electronic application in the **Resonant Tunnelling Diode (RTD)**.
 
-This repository provides **three independent ways to run the simulation**:
-1. 🌐 **Interactive Web App (Recommended)**: Runs instantly in any web browser with 3D WebGL graphics, real-time sliders, and zero installation.
-2. 🐍 **Pure Python Desktop GUI**: Runs with standard Python (`python rtd_gui_python.py`) with zero third-party dependencies.
-3. 📐 **MATLAB Simulation Suite**: Full MATLAB app, TMM engine, and 3D wavepacket scripts.
+🔗 **Try the live simulation instantly in your browser:**  
+👉 **[https://anantgoel2005.github.io/double-barrier-simulation/](https://anantgoel2005.github.io/double-barrier-simulation/)**
 
 ---
 
@@ -19,11 +18,8 @@ This repository provides **three independent ways to run the simulation**:
 ### Option 1: Interactive 3D Web App (Zero Setup)
 Open the simulation directly in any modern browser (Chrome, Edge, Firefox, Safari):
 
-* **Local**: Double-click `Launch_Web_Simulation.bat` (or open `index.html` in your browser).
-* **Live on GitHub Pages**: Once hosted, anyone can open:
-  ```
-  https://<your-username>.github.io/<repo-name>/
-  ```
+* **Live on GitHub Pages (Instant)**: Open **[https://anantgoel2005.github.io/double-barrier-simulation/](https://anantgoel2005.github.io/double-barrier-simulation/)**
+* **Local Offline**: Double-click `Launch_Web_Simulation.bat` (or open `index.html` in your browser).
 
 #### Features:
 * **Sliders**: Real-time adjustment of Barrier Height ($V_0$), Barrier Thickness ($L_b$), Quantum Well Width ($L_w$), Diode Bias ($V_a$), and Incident Energy ($E$).
@@ -157,39 +153,22 @@ double-barrier-simulation/
 
 ---
 
-## 🌐 Publishing to GitHub & GitHub Pages
+## 🌐 Repository & Live Web Demo
 
-To publish this project to your own public GitHub repository and enable the live 1-click web demo:
+* **GitHub Repository:** [https://github.com/Anantgoel2005/double-barrier-simulation](https://github.com/Anantgoel2005/double-barrier-simulation)
+* **Live Interactive 3D Simulation:** [https://anantgoel2005.github.io/double-barrier-simulation/](https://anantgoel2005.github.io/double-barrier-simulation/)
 
-### 1. Initialize and Commit
+### Cloning & Running Locally
 ```bash
-git init
-git add .
-git commit -m "Initial commit: Resonant Tunnelling & RTD Diode simulation suite"
+git clone https://github.com/Anantgoel2005/double-barrier-simulation.git
+cd double-barrier-simulation
+
+# 1. Open Interactive Web App:
+# Double-click index.html or Launch_Web_Simulation.bat
+
+# 2. Run Python Desktop App:
+python rtd_gui_python.py
 ```
-
-### 2. Create the Repository on GitHub
-Using the GitHub CLI:
-```bash
-gh auth login
-gh repo create double-barrier-simulation --public --source=. --remote=origin --push
-```
-
-*Or manually:*
-1. Create a new repository named `double-barrier-simulation` on [GitHub](https://github.com/new).
-2. Push your code:
-   ```bash
-   git branch -M main
-   git remote add origin https://github.com/<your-username>/double-barrier-simulation.git
-   git push -u origin main
-   ```
-
-### 3. Enable 1-Click Live Web Demo (GitHub Pages)
-1. Go to your repository on GitHub $\to$ **Settings** $\to$ **Pages**.
-2. Under **Build and deployment** $\to$ **Branch**, select `main` and `/ (root)`.
-3. Click **Save**.
-4. In ~1 minute, your simulation will be live at:
-   `https://<your-username>.github.io/double-barrier-simulation/`
 
 ---
 
