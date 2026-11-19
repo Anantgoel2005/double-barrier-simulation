@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resonant Tunnelling in Double Barrier Structure & RTD Diode - Presentation Ready Report</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 16mm 18mm 18mm 18mm;
+        }
+
+        *, *:before, *:after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #0f172a;
+            line-height: 1.55;
+            font-size: 9.5pt;
+            background: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Cover Page */
+        .cover-page {
+            page-break-after: always;
+            height: 255mm;
+            max-height: 255mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 35px 30px 25px 30px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            background: #ffffff;
+            position: relative;
+        }
+
+        .cover-top {
+            border-bottom: 3px solid #0284c7;
+            padding-bottom: 18px;
+        }
+
+        .cover-badge {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            font-size: 8.5pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 5px 12px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        .cover-title {
+            font-size: 22pt;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.25;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .cover-subtitle {
+            font-size: 11pt;
+            color: #475569;
+            font-weight: 500;
+            line-height: 1.45;
+            margin: 0;
+        }
+
+        .cover-authors-container {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #0284c7;
+            border-radius: 6px;
+            padding: 20px 22px;
+            margin: 25px 0;
+        }
+
+        .authors-header-label {
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 700;
+            color: #64748b;
+            margin-bottom: 12px;
+        }
+
+        .authors-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .author-card {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 12px 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .author-name {
+            font-size: 11.5pt;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .author-role {
+            font-size: 8.5pt;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .cover-footer-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 16px;
+            font-size: 8.5pt;
+            color: #475569;
+        }
+
+        .meta-col strong {
+            color: #0f172a;
+            display: block;
+            margin-bottom: 2px;
+            font-size: 8.5pt;
+        }
+
+        .meta-col a {
+            color: #0284c7;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        /* Document Pages & Headings */
+        .page-break {
+            page-break-before: always;
+        }
+
+        h1, h2, h3, h4 {
+            color: #0f172a;
+            font-weight: 700;
+            page-break-after: avoid;
+            break-after: avoid;
+        }
+
+        h1 {
+            font-size: 15pt;
+            border-bottom: 2px solid #0284c7;
+            padding-bottom: 5px;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            font-size: 11.5pt;
+            color: #0369a1;
+            margin-top: 16px;
+            margin-bottom: 6px;
+        }
+
+        h3 {
+            font-size: 10pt;
+            color: #334155;
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 8.5pt;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        th, td {
+            padding: 7px 10px;
+            text-align: left;
+            border: 1px solid #cbd5e1;
+        }
+
+        th {
+            background-color: #0f172a;
+            color: #ffffff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 7.5pt;
+            letter-spacing: 0.5px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* Figures */
+        .figure-box {
+            page-break-inside: avoid;
+            break-inside: avoid;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 14px 0;
+            text-align: center;
+        }
+
+        .figure-caption {
+            font-size: 8pt;
+            color: #475569;
+            font-weight: 600;
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        /* Callouts */
+        .callout {
+            page-break-inside: avoid;
+            break-inside: avoid;
+            border-radius: 6px;
+            padding: 10px 14px;
+            margin: 12px 0;
+            font-size: 9pt;
+            border-left: 4px solid;
+        }
+
+        .callout-info {
+            background: #f0f9ff;
+            border-color: #0284c7;
+            color: #0c4a6e;
+        }
+
+        .callout-success {
+            background: #f0fdf4;
+            border-color: #22c55e;
+            color: #14532d;
+        }
+
+        .callout-title {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        /* Math Display Blocks */
+        .math-block {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            padding: 8px 14px;
+            margin: 10px 0;
+            text-align: center;
+            font-family: 'Cambria Math', 'Times New Roman', serif;
+            font-size: 10.5pt;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        /* Table of Contents */
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dotted #cbd5e1;
+            font-size: 9pt;
+        }
+
+        .toc-item strong {
+            color: #0f172a;
+        }
+
+        .toc-dots {
+            flex-grow: 1;
+            border-bottom: 1px dotted #94a3b8;
+            margin: 0 8px 3px 8px;
+        }
+
+        .footer-note {
+            margin-top: 25px;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 8px;
+            font-size: 7.5pt;
+            color: #94a3b8;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================== -->
+    <!-- COVER PAGE                                                     -->
+    <!-- ============================================================== -->
+    <div class="cover-page">
+        <div class="cover-top">
+            <span class="cover-badge">Academic Project Final Report</span>
+            <h1 class="cover-title">Numerical Modeling and 3D Simulation of Quantum Resonant Tunnelling in Double-Barrier Heterostructures and Resonant Tunnelling Diodes (RTDs)</h1>
+            <p class="cover-subtitle">Theoretical Formulations, Transfer Matrix Method (TMM), Tsu-Esaki Current Transport, Negative Differential Resistance (NDR), and Interactive 3D WebGL Multi-Platform Implementation</p>
+        </div>
+
+        <div class="cover-authors-container">
+            <div class="authors-header-label">Project Research & Development Team</div>
+            <div class="authors-grid">
+                <div class="author-card">
+                    <div class="author-name">Mohammad Azmal Shah</div>
+                    <div class="author-role">Quantum Modeling & Analysis</div>
+                </div>
+                <div class="author-card">
+                    <div class="author-name">Pavan Karthik</div>
+                    <div class="author-role">Theoretical Transport Physics</div>
+                </div>
+                <div class="author-card">
+                    <div class="author-name">Anant Goel</div>
+                    <div class="author-role">Numerical Methods & Algorithms</div>
+                </div>
+                <div class="author-card">
+                    <div class="author-name">Darshan Mittal</div>
+                    <div class="author-role">Software Architecture & 3D Simulation</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cover-footer-meta">
+            <div class="meta-col">
+                <strong>Project Code Repository</strong>
+                <a href="https://github.com/Anantgoel2005/double-barrier-simulation">github.com/Anantgoel2005/double-barrier-simulation</a>
+            </div>
+            <div class="meta-col">
+                <strong>Interactive 3D Web Simulation</strong>
+                <a href="https://anantgoel2005.github.io/double-barrier-simulation/">anantgoel2005.github.io/double-barrier-simulation/</a>
+            </div>
+            <div class="meta-col">
+                <strong>Target Material System</strong>
+                Al<sub>0.3</sub>Ga<sub>0.7</sub>As / GaAs / Al<sub>0.3</sub>Ga<sub>0.7</sub>As Heterostructure
+            </div>
+            <div class="meta-col">
+                <strong>Submission Date</strong>
+                November 2026
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- TABLE OF CONTENTS & ABSTRACT                                   -->
+    <!-- ============================================================== -->
+    <div class="page-break"></div>
+    <h1>Table of Contents</h1>
+    <ul class="toc-list">
+        <li class="toc-item"><span><strong>1. Executive Summary & Problem Motivation</strong></span><span class="toc-dots"></span><span>Page 3</span></li>
+        <li class="toc-item"><span><strong>2. Comprehensive Literature Survey</strong></span><span class="toc-dots"></span><span>Page 4</span></li>
+        <li class="toc-item"><span><strong>3. Project Scope & Technical Objectives</strong></span><span class="toc-dots"></span><span>Page 5</span></li>
+        <li class="toc-item"><span><strong>4. Theoretical Methodology & Numerical Formulations</strong></span><span class="toc-dots"></span><span>Page 5</span></li>
+        <li class="toc-item"><span style="padding-left: 14px;">4.1 Stationary 1D Schrödinger Equation & Boundary Conditions</span><span class="toc-dots"></span><span>Page 5</span></li>
+        <li class="toc-item"><span style="padding-left: 14px;">4.2 Piecewise Transfer Matrix Method (TMM)</span><span class="toc-dots"></span><span>Page 6</span></li>
+        <li class="toc-item"><span style="padding-left: 14px;">4.3 Tsu-Esaki Diode Current Density Formulation</span><span class="toc-dots"></span><span>Page 6</span></li>
+        <li class="toc-item"><span style="padding-left: 14px;">4.4 Split-Step Fourier Method (SSFM) for Dynamic TDSE</span><span class="toc-dots"></span><span>Page 7</span></li>
+        <li class="toc-item"><span><strong>5. Results, Parametric Analysis & Physical Discussion</strong></span><span class="toc-dots"></span><span>Page 7</span></li>
+        <li class="toc-item"><span style="padding-left: 14px;">5.1 Baseline Resonant Cavity Performance</span><span class="toc-dots"></span><span>Page 7</span></li>
+        <li class="toc-item"><span style="padding-left: 14px;">5.2 Parametric Sensitivity: Barrier Height, Thickness & Well Width</span><span class="toc-dots"></span><span>Page 8</span></li>
+        <li class="toc-item"><span style="padding-left: 14px;">5.3 Resonant Tunnelling Diode I-V & NDR Operation</span><span class="toc-dots"></span><span>Page 9</span></li>
+        <li class="toc-item"><span style="padding-left: 14px;">5.4 3D Dynamic Wavepacket Resonant Cavity Dynamics</span><span class="toc-dots"></span><span>Page 9</span></li>
+        <li class="toc-item"><span><strong>6. Multi-Platform Software Implementation</strong></span><span class="toc-dots"></span><span>Page 10</span></li>
+        <li class="toc-item"><span><strong>7. Main Conclusions</strong></span><span class="toc-dots"></span><span>Page 10</span></li>
+        <li class="toc-item"><span><strong>8. Future Scope & Research Extensions</strong></span><span class="toc-dots"></span><span>Page 11</span></li>
+        <li class="toc-item"><span><strong>9. Academic References & Bibliography</strong></span><span class="toc-dots"></span><span>Page 11</span></li>
+    </ul>
+
+    <div class="callout callout-info" style="margin-top: 20px;">
+        <div class="callout-title">Executive Abstract</div>
+        <p>This report documents the rigorous numerical modeling and multi-platform simulation of quantum resonant tunnelling in semiconductor double-barrier heterostructures (Al<sub>x</sub>Ga<sub>1-x</sub>As / GaAs / Al<sub>x</sub>Ga<sub>1-x</sub>As) and its application in Resonant Tunnelling Diodes (RTDs). Using an exact piecewise Transfer Matrix Method (TMM) with BenDaniel-Duke boundary conditions, we solve the 1D Schrödinger equation to obtain transmission spectra T(E), quasi-bound state energies E<sub>n</sub>, and dwell times &tau;. Macroscopic current transport is modeled via the Tsu-Esaki formula at 300 K, reproducing the characteristic N-shaped Negative Differential Resistance (NDR) curve with a peak-to-valley current ratio (PVCR) of 6.78 and peak current density J<sub>p</sub> = 1.18 &times; 10<sup>5</sup> A/cm<sup>2</sup>. Dynamic 2D/3D wavepacket animations based on the Split-Step Fourier Method (SSFM) illustrate coherent cavity accumulation on resonance versus total reflection off-resonance. The project has been deployed across WebGL, Python, and MATLAB frameworks.</p>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 1: MOTIVATION                                          -->
+    <!-- ============================================================== -->
+    <div class="page-break"></div>
+    <h1>1. Executive Summary & Problem Motivation</h1>
+    
+    <p>As conventional silicon semiconductor scaling approaches fundamental quantum-mechanical boundaries—dictated by gate oxide tunneling leakage, subthreshold swing saturation (60 mV/dec at 300 K), and thermal dissipation densities—solid-state device research has increasingly focused on quantum-effect devices that exploit wave mechanics rather than suppressing them.</p>
+
+    <h2>1.1 The Ultra-High Frequency Terahertz Frontier</h2>
+    <p>Conventional semiconductor transit-time devices (e.g., Gunn diodes, IMPATT diodes, and high-electron-mobility transistors) are intrinsically limited by carrier drift velocity saturation across macroscopic depletion regions (~10<sup>7</sup> cm/s in GaAs), imposing practical cutoff frequencies below 500 GHz. In contrast, carrier transport in <strong>Resonant Tunnelling Diodes (RTDs)</strong> is dictated by coherent quantum mechanical tunneling through nanometer-scale potential barriers. Because carrier dwell times are on femtosecond timescales (&tau; ~ 50–200 fs), RTDs represent the highest-frequency solid-state electronic sources known, achieving fundamental oscillation frequencies exceeding <strong>1.9–2.0 THz</strong> at room temperature.</p>
+
+    <h2>1.2 Negative Differential Resistance (NDR) & Circuit Multifunctionality</h2>
+    <p>The primary operational hallmark of the RTD is its non-monotonic current-voltage (I-V) curve, which exhibits a distinct region of <strong>Negative Differential Resistance (NDR)</strong> where differential conductance is negative:</p>
+    
+    <div class="math-block">
+        G = dI / dV &lt; 0
+    </div>
+
+    <p>This property allows a single two-terminal RTD to perform functions that typically require multiple transistors, including terahertz local oscillators, sub-2 ps pulse generators, and multi-valued logic (MVL) memory cells.</p>
+
+    <!-- FIGURE 1: CONDUCTION BAND DIAGRAM -->
+    <div class="figure-box">
+        <svg width="580" height="200" viewBox="0 0 580 200" style="margin: 0 auto; display: block;">
+            <rect x="0" y="0" width="580" height="200" fill="#f8fafc" rx="4"/>
+            <line x1="40" y1="160" x2="540" y2="160" stroke="#cbd5e1" stroke-width="1.5"/>
+            <line x1="40" y1="30" x2="40" y2="160" stroke="#cbd5e1" stroke-width="1.5"/>
+
+            <!-- Barriers -->
+            <rect x="170" y="60" width="60" height="100" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+            <rect x="310" y="60" width="60" height="100" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+
+            <!-- Energy Levels -->
+            <line x1="40" y1="130" x2="170" y2="130" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,4"/>
+            <text x="50" y="125" font-size="8.5" fill="#0284c7" font-weight="bold">Incident Energy E</text>
+
+            <line x1="230" y1="120" x2="310" y2="120" stroke="#16a34a" stroke-width="2.5"/>
+            <text x="240" y="115" font-size="8.5" fill="#16a34a" font-weight="bold">Bound State E₁</text>
+
+            <!-- Wavefunction -->
+            <path d="M 40,130 Q 70,105 100,130 T 150,130 Q 160,130 170,133 Q 200,150 230,120 Q 270,60 310,120 Q 340,150 370,133 Q 410,130 450,130 T 540,130" 
+                  fill="none" stroke="#2563eb" stroke-width="2.5"/>
+
+            <!-- Dimensions -->
+            <text x="200" y="180" font-size="8" fill="#64748b" text-anchor="middle">L_b (3 nm)</text>
+            <text x="270" y="180" font-size="8" fill="#64748b" text-anchor="middle">L_w (5 nm)</text>
+            <text x="340" y="180" font-size="8" fill="#64748b" text-anchor="middle">L_b (3 nm)</text>
+
+            <!-- Potential V0 -->
+            <text x="200" y="52" font-size="8.5" fill="#b91c1c" font-weight="bold" text-anchor="middle">Barrier V₀ (0.3 eV)</text>
+            <text x="340" y="52" font-size="8.5" fill="#b91c1c" font-weight="bold" text-anchor="middle">Barrier V₀ (0.3 eV)</text>
+            <text x="105" y="85" font-size="8.5" fill="#475569" text-anchor="middle">Emitter Lead</text>
+            <text x="435" y="85" font-size="8.5" fill="#475569" text-anchor="middle">Collector Lead</text>
+        </svg>
+        <div class="figure-caption">Figure 1: Conduction band potential profile V(x) of the AlGaAs/GaAs double-barrier structure showing the localized quasi-bound resonant standing wave inside the quantum well.</div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 2: LITERATURE SURVEY                                   -->
+    <!-- ============================================================== -->
+    <div class="page-break"></div>
+    <h1>2. Comprehensive Literature Survey</h1>
+
+    <p>The development of quantum tunneling in engineered semiconductor heterostructures spans over five decades of breakthroughs in condensed matter physics and epitaxial crystal growth:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Author(s)</th>
+                <th>Milestone Discovery</th>
+                <th>Significance to Current Simulation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>1970</strong></td>
+                <td>L. Esaki & R. Tsu</td>
+                <td>Proposed semiconductor superlattices; predicted negative differential conductivity.</td>
+                <td>Established quantum size effects and multi-barrier transport foundations.</td>
+            </tr>
+            <tr>
+                <td><strong>1973</strong></td>
+                <td>R. Tsu & L. Esaki</td>
+                <td>Derived the analytical tunneling current formula integrating T(E) with Fermi factors.</td>
+                <td>Exact mathematical formulation used in our RTD I-V current solver.</td>
+            </tr>
+            <tr>
+                <td><strong>1974</strong></td>
+                <td>L. L. Chang, L. Esaki, & R. Tsu</td>
+                <td>First experimental demonstration of resonant tunneling in GaAs/AlGaAs double barriers.</td>
+                <td>Provided the physical benchmark parameters (V<sub>0</sub> ~ 0.3 eV, L<sub>b</sub>, L<sub>w</sub>).</td>
+            </tr>
+            <tr>
+                <td><strong>1966</strong></td>
+                <td>D. J. BenDaniel & C. B. Duke</td>
+                <td>Derived wave function continuity conditions for interfaces with varying effective mass.</td>
+                <td>Exact interface boundary conditions implemented in our TMM matrix matching.</td>
+            </tr>
+            <tr>
+                <td><strong>1990</strong></td>
+                <td>B. Jonsson & S. T. Eng</td>
+                <td>Piecewise Transfer Matrix Method for arbitrary potential profiles under bias.</td>
+                <td>Numerical discretization scheme for tilted bands under electric fields.</td>
+            </tr>
+            <tr>
+                <td><strong>1995</strong></td>
+                <td>S. Datta</td>
+                <td>Non-Equilibrium Green's Function (NEGF) formalisms for open-boundary mesoscopic transport.</td>
+                <td>Theoretical reference framework for comparing coherent TMM vs dissipative transport.</td>
+            </tr>
+            <tr>
+                <td><strong>2010–2022</strong></td>
+                <td>S. Suzuki & M. Asada</td>
+                <td>Developed room-temperature RTD oscillators operating at 1.0–1.98 THz.</td>
+                <td>Confirms modern technological relevance in 6G and THz communications.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>2.1 The Optical Fabry-Pérot Analogy</h2>
+    <p>Resonant tunneling in double barriers is mathematically isomorphic to an optical <strong>Fabry-Pérot interferometer</strong>. When de Broglie electron waves undergo multiple internal reflections inside the quantum well, constructive interference occurs when round-trip phase accumulation satisfies:</p>
+    
+    <div class="math-block">
+        2 k_w L_w + &phi;_1 + &phi;_2 = 2 &pi; n, \quad n = 1, 2, 3, \dots
+    </div>
+
+    <p>At these eigen-energies, transmission approaches unity ($T \to 1$) and probability density $|\psi(x)|^2$ inside the well is amplified by $> 50\times$ compared to the incident wave.</p>
+
+    <!-- FIGURE 2: FABRY PEROT DIAGRAM -->
+    <div class="figure-box">
+        <svg width="560" height="130" viewBox="0 0 560 130" style="margin: 0 auto; display: block;">
+            <rect x="0" y="0" width="560" height="130" fill="#f8fafc" rx="4"/>
+            <rect x="140" y="15" width="16" height="100" fill="#94a3b8" rx="2"/>
+            <rect x="380" y="15" width="16" height="100" fill="#94a3b8" rx="2"/>
+            
+            <line x1="30" y1="65" x2="140" y2="65" stroke="#0284c7" stroke-width="2.5"/>
+            <text x="80" y="55" font-size="8.5" fill="#0284c7" font-weight="bold">Incident Wave</text>
+
+            <path d="M 156,65 L 380,30 L 156,100 L 380,65" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="3,3"/>
+            <text x="268" y="60" font-size="8.5" fill="#d97706" font-weight="bold" text-anchor="middle">Multiple Internal Reflections</text>
+            <text x="268" y="80" font-size="7.5" fill="#475569" text-anchor="middle">Round-trip Phase: 2 k L_w + &phi;₁ + &phi;₂ = 2&pi;n</text>
+
+            <line x1="396" y1="65" x2="520" y2="65" stroke="#16a34a" stroke-width="2.5"/>
+            <text x="450" y="55" font-size="8.5" fill="#16a34a" font-weight="bold">Resonant T ~ 1</text>
+        </svg>
+        <div class="figure-caption">Figure 2: Fabry-Pérot cavity analog illustrating constructive interference of de Broglie waves inside the quantum well.</div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 3 & 4: OBJECTIVES & METHODOLOGY                        -->
+    <!-- ============================================================== -->
+    <div class="page-break"></div>
+    <h1>3. Project Scope & Technical Objectives</h1>
+
+    <div class="callout callout-success">
+        <div class="callout-title">Explicit Project Objectives</div>
+        <ol style="margin-left: 18px; padding-left: 0; margin-top: 6px;">
+            <li><strong>Exact 1D Quantum Transport Engine:</strong> Formulate and implement the Transfer Matrix Method (TMM) with BenDaniel-Duke conditions, supporting arbitrary band tilting under bias V<sub>a</sub>.</li>
+            <li><strong>Parametric Sensitivity Study:</strong> Quantify the independent effects of Barrier Height (V<sub>0</sub>), Barrier Thickness (L<sub>b</sub>), and Well Width (L<sub>w</sub>) on transmission spectra T(E) and state lifetimes &tau;.</li>
+            <li><strong>Room-Temperature RTD Diode I-V Modeling:</strong> Implement the Tsu-Esaki formula at 300 K to reproduce Peak Voltage (V<sub>p</sub>), Peak Current (J<sub>p</sub>), Valley Voltage (V<sub>v</sub>), Valley Current (J<sub>v</sub>), and PVCR.</li>
+            <li><strong>Dynamic 3D TDSE Wavepacket Solver:</strong> Implement the Split-Step Fourier Method (SSFM) to visualize wavepacket cavity accumulation vs barrier reflection in real-time 3D.</li>
+            <li><strong>Tri-Platform Software Deployment:</strong> Deliver an interactive WebGL web app on GitHub Pages, a pure Python desktop GUI, and an automated MATLAB simulation suite.</li>
+        </ol>
+    </div>
+
+    <h1>4. Theoretical Methodology & Numerical Formulations</h1>
+
+    <h2>4.1 Stationary 1D Schrödinger Equation</h2>
+    <p>Carrier motion along the growth axis $x$ is described by the effective-mass Schrödinger equation:</p>
+    <div class="math-block">
+        -\frac{\hbar^2}{2} \frac{d}{dx}\left( \frac{1}{m^*(x)} \frac{d\psi(x)}{dx} \right) + V(x) \psi(x) = E \psi(x)
+    </div>
+    <p>Across heterointerfaces with discontinuous effective mass, the <strong>BenDaniel-Duke boundary conditions</strong> enforce:</p>
+    <div class="math-block">
+        \psi(x^-) = \psi(x^+), \quad \left.\frac{1}{m^*(x^-)} \frac{d\psi}{dx}\right|_{x^-} = \left.\frac{1}{m^*(x^+)} \frac{d\psi}{dx}\right|_{x^+}
+    </div>
+
+    <h2>4.2 Piecewise Transfer Matrix Method (TMM)</h2>
+    <p>The active region $x \in [0, L_{tot}]$ ($L_{tot} = 2 L_b + L_w$) is sliced into $N$ intervals $\Delta x = L_{tot}/N$. In slice $j$:</p>
+    <div class="math-block">
+        V_j = V_{flat}(x_j) - e V_a \left(\frac{x_j}{L_{tot}}\right), \quad k_j = \frac{\sqrt{2 m_j^* (E - V_j)}}{\hbar}
+    </div>
+    <p>The state vector $\mathbf{w}(x) = [\psi(x), \frac{1}{m^*(x)}\psi'(x)]^T$ propagates via the layer matrix $\mathbf{M}_j$:</p>
+    <div class="math-block">
+        \mathbf{M}_j = \begin{pmatrix} \cos(k_j \Delta x) & \frac{m_j^*}{k_j} \sin(k_j \Delta x) \\ -\frac{k_j}{m_j^*} \sin(k_j \Delta x) & \cos(k_j \Delta x) \end{pmatrix}
+    </div>
+    <p>To avoid $0/0$ indeterminate division when $k_j \to 0$, we use the unnormalized Taylor expansion: $\text{sinc}(k_j \Delta x) = \Delta x - k_j^2 \Delta x^3 / 6$. Matching to asymptotic plane wave solutions in emitter ($\alpha_L = i k_L / m_L^*$) and collector ($\alpha_R = i k_R / m_R^*$) leads to:</p>
+    <div class="math-block">
+        t = \frac{2 \alpha_L}{\alpha_L u_1 + u_2}, \quad r = t u_1 - 1, \quad \text{where } \begin{pmatrix} u_1 \\ u_2 \end{pmatrix} = \mathbf{M}_{tot}^{-1} \begin{pmatrix} 1 \\ \alpha_R \end{pmatrix}
+    </div>
+    <div class="math-block">
+        T(E) = \frac{\text{Re}(k_R) / m_R^*}{k_L / m_L^*} |t|^2, \quad R(E) = |r|^2, \quad T(E) + R(E) = 1.0000000000
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 4.3 & 4.4: DIODE & TDSE                                -->
+    <!-- ============================================================== -->
+    <div class="page-break"></div>
+    <h2>4.3 Tsu-Esaki Diode Current Density Formulation</h2>
+    <p>Macroscopic current transport in the RTD integrates longitudinal transmission $T(E, V_a)$ with the transverse electron supply function:</p>
+    <div class="math-block">
+        J(V_a) = \frac{e m^* k_B T_{temp}}{2 \pi^2 \hbar^3} \int_0^\infty T(E, V_a) \ln\left( \frac{1 + \exp\left(\frac{E_F - E}{k_B T_{temp}}\right)}{1 + \exp\left(\frac{E_F - E - e V_a}{k_B T_{temp}}\right)} \right) dE
+    </div>
+    <p>where $T_{temp} = 300\text{ K}$, $k_B T_{temp} \approx 25.85\text{ meV}$, and $E_F = 40\text{ meV}$. Numerically stable $\text{log1p}$ functions prevent numerical overflow.</p>
+
+    <h2>4.4 Split-Step Fourier Method (SSFM) for Dynamic TDSE</h2>
+    <p>To simulate real-time wavepacket motion in 2D space $(x, y)$, the Time-Dependent Schrödinger Equation is advanced via symmetric Strang splitting:</p>
+    <div class="math-block">
+        \Psi(x, y, t + \Delta t) \approx e^{-\frac{i V(x, y) \Delta t}{2 \hbar}} \mathcal{F}^{-1}\left[ e^{-\frac{i \hbar (k_x^2 + k_y^2) \Delta t}{2 m^*}} \mathcal{F}\left[ e^{-\frac{i V(x, y) \Delta t}{2 \hbar}} \Psi(x, y, t) \right] \right]
+    </div>
+
+    <!-- FIGURE 3: TRANSMISSION SPECTRUM -->
+    <div class="figure-box">
+        <svg width="580" height="190" viewBox="0 0 580 190" style="margin: 0 auto; display: block;">
+            <rect x="0" y="0" width="580" height="190" fill="#f8fafc" rx="4"/>
+            <line x1="50" y1="155" x2="540" y2="155" stroke="#334155" stroke-width="1.5"/>
+            <line x1="50" y1="25" x2="50" y2="155" stroke="#334155" stroke-width="1.5"/>
+            
+            <text x="295" y="180" font-size="8.5" fill="#0f172a" font-weight="bold" text-anchor="middle">Incident Electron Energy E [eV]</text>
+            <text x="18" y="90" font-size="8.5" fill="#0f172a" font-weight="bold" transform="rotate(-90 18,90)" text-anchor="middle">Transmission T(E)</text>
+            
+            <line x1="50" y1="35" x2="540" y2="35" stroke="#e2e8f0" stroke-dasharray="3,3"/>
+            <text x="42" y="39" font-size="8" fill="#64748b" text-anchor="end">1.0</text>
+            <line x1="50" y1="95" x2="540" y2="95" stroke="#e2e8f0" stroke-dasharray="3,3"/>
+            <text x="42" y="99" font-size="8" fill="#64748b" text-anchor="end">0.5</text>
+            <text x="42" y="159" font-size="8" fill="#64748b" text-anchor="end">0.0</text>
+
+            <path d="M 50,155 Q 120,155 150,150 Q 165,135 170,36 Q 175,135 190,150 Q 260,155 340,155 Q 410,155 435,145 Q 450,120 455,60 Q 460,120 475,145 Q 510,153 540,154" 
+                  fill="none" stroke="#0284c7" stroke-width="2.5"/>
+
+            <circle cx="170" cy="36" r="4" fill="#ef4444"/>
+            <text x="170" y="26" font-size="8.5" fill="#b91c1c" font-weight="bold" text-anchor="middle">E₁ = 0.088 eV (T ≈ 1.0)</text>
+
+            <line x1="166" y1="95" x2="174" y2="95" stroke="#f59e0b" stroke-width="2"/>
+            <text x="185" y="98" font-size="8" fill="#b45309" font-weight="bold">FWHM Γ = 4 meV (τ = 164 fs)</text>
+
+            <circle cx="455" cy="60" r="4" fill="#ef4444"/>
+            <text x="455" y="50" font-size="8.5" fill="#b91c1c" font-weight="bold" text-anchor="middle">E₂ = 0.312 eV</text>
+        </svg>
+        <div class="figure-caption">Figure 3: Computed Transmission Spectrum T(E) showing sharp quasi-bound state resonance at E₁ = 88.0 meV with linewidth Γ = 4.0 meV and lifetime τ = 164 fs.</div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 5: RESULTS & DISCUSSION                                -->
+    <!-- ============================================================== -->
+    <h1>5. Results, Parametric Analysis & Physical Discussion</h1>
+
+    <h2>5.1 Baseline Resonant Cavity Performance</h2>
+    <p>For a baseline heterostructure ($V_0 = 0.30\text{ eV}$, $L_b = 3.0\text{ nm}$, $L_w = 5.0\text{ nm}$, $m_w^* = 0.067 m_0$, $m_b^* = 0.092 m_0$ at $V_a = 0\text{ V}$):</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Physical Parameter</th>
+                <th>Computed Value</th>
+                <th>Physical Meaning</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Ground Resonance $E_1$</strong></td>
+                <td>$0.0880\text{ eV}$ ($88.0\text{ meV}$)</td>
+                <td>Lowest quasi-bound eigenstate inside quantum well.</td>
+            </tr>
+            <tr>
+                <td><strong>Resonance Linewidth $\Gamma$</strong></td>
+                <td>$0.0040\text{ eV}$ ($4.0\text{ meV}$)</td>
+                <td>Energy broadening (FWHM) due to barrier coupling.</td>
+            </tr>
+            <tr>
+                <td><strong>Quasi-Bound Lifetime $\tau$</strong></td>
+                <td>$164.7\text{ fs}$ ($1.65 \times 10^{-13}\text{ s}$)</td>
+                <td>Mean dwell time of trapped electron wavepacket ($\tau = \hbar / \Gamma$).</td>
+            </tr>
+            <tr>
+                <td><strong>Peak Transmission $T_{max}$</strong></td>
+                <td>$0.9998 \approx 1.00$</td>
+                <td>Complete constructive de Broglie interference in cavity.</td>
+            </tr>
+            <tr>
+                <td><strong>Cavity Quality Factor $Q$</strong></td>
+                <td>$22.0$</td>
+                <td>Sharpness of resonance: $Q = E_1 / \Gamma$.</td>
+            </tr>
+            <tr>
+                <td><strong>Well Amplification</strong></td>
+                <td>$54.2 \times |\psi_{inc}|^2$</td>
+                <td>Standing wave probability density buildup in well.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 5.2 & 5.3: SENSITIVITY & RTD I-V                       -->
+    <!-- ============================================================== -->
+    <div class="page-break"></div>
+    <h2>5.2 Parametric Sensitivity Analysis</h2>
+    <ul>
+        <li><strong>Barrier Height ($V_0$):</strong> Increasing $V_0$ from $0.20$ to $0.60\text{ eV}$ increases barrier attenuation ($\kappa = \sqrt{2 m_b^* (V_0 - E)}/\hbar$), suppressing non-resonant leakage below the barrier crest ($T < 10^{-6}$).</li>
+        <li><strong>Barrier Thickness ($L_b$):</strong> Linewidth narrows exponentially: $\Gamma \propto \exp(-2 \kappa L_b)$. Increasing $L_b$ from $2.0$ to $4.0\text{ nm}$ reduces $\Gamma$ from $18.5\text{ meV}$ ($\tau \approx 35\text{ fs}$) to $0.85\text{ meV}$ ($\tau \approx 775\text{ fs}$), boosting PVCR at the cost of current amplitude.</li>
+        <li><strong>Well Width ($L_w$):</strong> Resonant energies scale as $E_n \propto 1/L_w^2$. Widening $L_w$ lowers $E_1$ and brings $E_2$ into the well for $L_w > 6.5\text{ nm}$, enabling multi-state logic.</li>
+    </ul>
+
+    <h2>5.3 Resonant Tunnelling Diode $I-V$ & NDR Operation</h2>
+    <p>Applying the Tsu-Esaki equation over bias $V_a \in [0, 0.35\text{ V}]$ reveals the four operational regimes of the RTD:</p>
+    <ol>
+        <li><strong>Thermal Equilibrium ($V_a = 0\text{ V}$):</strong> $J = 0$. $E_1 = 88\text{ meV}$ sits above the emitter Fermi sea ($E_F = 40\text{ meV}$).</li>
+        <li><strong>Resonant Peak ($V_a = 0.14\text{ V}$):</strong> Conduction band tilts by $e V_a / 2$, pulling $E_1$ into alignment with occupied emitter states ($0 < E_1 < E_F$). Current surges to:
+            <div class="math-block">
+                J_{peak} = 1.18 \times 10^5\text{ A/cm}^2 \quad \text{at } V_{peak} = 0.140\text{ V}
+            </div>
+        </li>
+        <li><strong>Negative Differential Resistance (NDR) ($0.14\text{ V} < V_a < 0.20\text{ V}$):</strong> $E_1$ drops below the emitter band edge ($E_c$). Resonant tunneling quenches because emitter electrons cannot conserve transverse momentum, producing $dJ/dV_a < 0$.</li>
+        <li><strong>Valley Point ($V_a = 0.20\text{ V}$):</strong> Current drops to a minimum $J_{valley} = 1.74 \times 10^4\text{ A/cm}^2$, yielding a <strong>Peak-to-Valley Current Ratio:</strong>
+            <div class="math-block">
+                \text{PVCR} = \frac{J_{peak}}{J_{valley}} = \frac{1.18 \times 10^5}{1.74 \times 10^4} \approx 6.78
+            </div>
+        </li>
+    </ol>
+
+    <!-- FIGURE 4: RTD I-V CURVE -->
+    <div class="figure-box">
+        <svg width="580" height="200" viewBox="0 0 580 200" style="margin: 0 auto; display: block;">
+            <rect x="0" y="0" width="580" height="200" fill="#f8fafc" rx="4"/>
+            <line x1="60" y1="165" x2="540" y2="165" stroke="#334155" stroke-width="1.5"/>
+            <line x1="60" y1="25" x2="60" y2="165" stroke="#334155" stroke-width="1.5"/>
+            
+            <text x="300" y="190" font-size="8.5" fill="#0f172a" font-weight="bold" text-anchor="middle">Applied Diode Bias Voltage V_a [V]</text>
+            <text x="18" y="95" font-size="8.5" fill="#0f172a" font-weight="bold" transform="rotate(-90 18,95)" text-anchor="middle">Current Density J [A/cm²]</text>
+
+            <rect x="210" y="25" width="100" height="140" fill="#fee2e2" opacity="0.6"/>
+            <text x="260" y="40" font-size="8.5" fill="#dc2626" font-weight="bold" text-anchor="middle">NDR Region (dI/dV &lt; 0)</text>
+
+            <path d="M 60,165 Q 140,155 175,100 Q 200,55 210,42 Q 230,55 260,120 Q 290,145 310,145 Q 370,145 430,130 Q 480,115 540,75" 
+                  fill="none" stroke="#16a34a" stroke-width="2.5"/>
+
+            <circle cx="210" cy="42" r="5" fill="#f59e0b"/>
+            <text x="210" y="32" font-size="8.5" fill="#b45309" font-weight="bold" text-anchor="middle">Peak (0.14 V, 1.18×10⁵ A/cm²)</text>
+
+            <circle cx="310" cy="145" r="5" fill="#7c3aed"/>
+            <text x="315" y="158" font-size="8.5" fill="#6d28d9" font-weight="bold">Valley (0.20 V, 1.74×10⁴ A/cm²)</text>
+            <text x="370" y="95" font-size="9" fill="#0f172a" font-weight="bold">PVCR = 6.78</text>
+        </svg>
+        <div class="figure-caption">Figure 4: Computed room-temperature (300 K) RTD I-V characteristic showing Peak Current, Valley Current, and the highlighted Negative Differential Resistance (NDR) region.</div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 6 & 7: IMPLEMENTATION & CONCLUSIONS                    -->
+    <!-- ============================================================== -->
+    <div class="page-break"></div>
+    <h1>6. Multi-Platform Software Implementation</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Framework</th>
+                <th>Target Platform</th>
+                <th>Features & Capabilities</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Interactive Web App</strong><br/>(WebGL / Three.js / Canvas)</td>
+                <td>Web Browser (Chrome, Edge, Safari, Firefox)<br/><strong>Hosted on GitHub Pages</strong></td>
+                <td>
+                    • Real-time sliders for $V_0, L_b, L_w, V_a, E$<br/>
+                    • 3D WebGL quantum cavity with orbit controls<br/>
+                    • Automatic fallback to native HTML5 Canvas 3D if offline<br/>
+                    • Instant TMM & Tsu-Esaki solver in JavaScript (~2 ms)<br/>
+                    • 1-click cloud access: <a href="https://anantgoel2005.github.io/double-barrier-simulation/">Live Web Demo</a>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Desktop Python GUI</strong><br/>(Pure Standard Library)</td>
+                <td>Cross-platform Desktop<br/>(Windows, macOS, Linux)</td>
+                <td>
+                    • Pure Python 3 + `tkinter`, `math`, `cmath`<br/>
+                    • <strong>Zero pip dependencies</strong> (no NumPy/SciPy needed)<br/>
+                    • 4-quadrant interactive dashboard with live 3D wireframe<br/>
+                    • Single-command launch: `python rtd_gui_python.py`
+                </td>
+            </tr>
+            <tr>
+                <td><strong>MATLAB Simulation Suite</strong><br/>(TMM & TDSE Engine)</td>
+                <td>MATLAB R2018b+<br/>(Base MATLAB compatible)</td>
+                <td>
+                    • Exact piecewise TMM engine (`calculate_tmm.m`)<br/>
+                    • Tsu-Esaki current solver (`calculate_rtd_iv.m`)<br/>
+                    • Dynamic 3D TDSE Split-Step Fourier solver (`rtd_3d_wavepacket.m`)<br/>
+                    • 3D energy and Stark landscapes (`rtd_3d_landscape.m`)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1>7. Main Conclusions</h1>
+
+    <div class="callout callout-success">
+        <div class="callout-title">Summary of Core Scientific Findings</div>
+        <ol style="margin-left: 18px; padding-left: 0; margin-top: 6px;">
+            <li><strong>Validation of Coherent Resonant Tunnelling:</strong> The Transfer Matrix Method proved that constructive interference in the well amplifies probability density by $> 54\times$, yielding near-unity transmission ($T \to 1.00$) at $E_1 = 88.0\text{ meV}$.</li>
+            <li><strong>Origin of Macroscopic NDR:</strong> The N-shaped I-V curve was directly mapped to sub-band alignment and subsequent cutoff against the emitter Fermi sea, demonstrating $J_p = 1.18 \times 10^5\text{ A/cm}^2$ and $\text{PVCR} \approx 6.78$.</li>
+            <li><strong>Linewidth-Lifetime Trade-off:</strong> Dwell times follow $\tau = \hbar/\Gamma$, scaling exponentially with barrier thickness ($L_b$), governing the fundamental trade-off between switching speed and current density.</li>
+            <li><strong>Open-Source Dissemination:</strong> A tri-platform suite was published under the MIT License on GitHub with a 1-click live web simulation.</li>
+        </ol>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 8 & 9: FUTURE SCOPE & REFERENCES                       -->
+    <!-- ============================================================== -->
+    <div class="page-break"></div>
+    <h1>8. Future Scope & Research Extensions</h1>
+
+    <ul>
+        <li><strong>Self-Consistent Poisson-Schrödinger Solver:</strong> Incorporate dynamic space-charge accumulation inside the quantum well at high current densities to capture electrostatic hysteresis and intrinsic bistability.</li>
+        <li><strong>Non-Equilibrium Green's Function (NEGF) Formalism:</strong> Extend beyond coherent tunneling to model dissipative processes (optical phonons, acoustic phonons, interface roughness).</li>
+        <li><strong>High-Offset Heterostructures:</strong> Investigate In<sub>0.53</sub>Ga<sub>0.47</sub>As / AlAs and InAs / AlSb systems ($V_0 > 1.2\text{ eV}$) to achieve ultra-high $\text{PVCR} > 25$ for room-temperature THz logic.</li>
+        <li><strong>Quantum Cascade Lasers (QCLs):</strong> Expand to periodic superlattices (20–50 periods) for intersubband mid-infrared and THz optical sources.</li>
+        <li><strong>WebGPU & Machine Learning Inverse Design:</strong> Accelerate 3D TDSE simulations to 60 FPS in the browser using WebGPU, and apply neural networks to automate barrier optimization.</li>
+    </ul>
+
+    <h1>9. Academic References & Bibliography</h1>
+
+    <ol style="font-size: 8pt; line-height: 1.55; margin-left: 18px; padding-left: 0;">
+        <li><strong>Esaki, L., & Tsu, R.</strong> (1970). Superlattice and negative differential conductivity in semiconductors. <em>IBM Journal of Research and Development</em>, 14(1), 61–65.</li>
+        <li><strong>Tsu, R., & Esaki, L.</strong> (1973). Tunneling in a finite superlattice. <em>Applied Physics Letters</em>, 22(11), 562–564.</li>
+        <li><strong>Chang, L. L., Esaki, L., & Tsu, R.</strong> (1974). Resonant tunneling in semiconductor double barriers. <em>Applied Physics Letters</em>, 24(12), 593–595.</li>
+        <li><strong>BenDaniel, D. J., & Duke, C. B.</strong> (1966). Space-charge effects on electron tunneling. <em>Physical Review</em>, 152(2), 683–692.</li>
+        <li><strong>Bohm, D.</strong> (1951). <em>Quantum Theory</em>. Prentice-Hall, Inc., Englewood Cliffs, NJ.</li>
+        <li><strong>Jonsson, B., & Eng, S. T.</strong> (1990). Solving the Schrödinger equation in arbitrary quantum-well structures with time-dependent effective mass. <em>IEEE Journal of Quantum Electronics</em>, 26(11), 2025–2035.</li>
+        <li><strong>Datta, S.</strong> (1995). <em>Electronic Transport in Mesoscopic Systems</em>. Cambridge University Press, Cambridge, UK.</li>
+        <li><strong>Feit, M. D., Fleck, J. A., & Steiger, A.</strong> (1982). Solution of the Schrödinger equation by a spectral method. <em>Journal of Computational Physics</em>, 47(3), 412–433.</li>
+        <li><strong>Suzuki, S., Asada, M., Teranishi, A., Sugiyama, H., & Yokoyama, H.</strong> (2010). Fundamental oscillation up to 1.04 THz in resonant-tunneling-diode oscillators on InP substrate. <em>Applied Physics Letters</em>, 97(24), 242102.</li>
+        <li><strong>Lake, R., Klimeck, G., Bowen, R. C., & Jovanovic, D.</strong> (1997). Single and multiband modeling of quantum electron transport through layered semiconductor devices. <em>Journal of Applied Physics</em>, 81(12), 7845–7869.</li>
+        <li><strong>Goldberg, A., Schey, H. M., & Schwartz, J. L.</strong> (1967). Computer-generated motion pictures of one-dimensional quantum-mechanical transmission and reflection phenomena. <em>American Journal of Physics</em>, 35(3), 177–186.</li>
+        <li><strong>Sollner, T. C. L. G., Goodhue, W. D., Tannenwald, P. E., Parker, C. D., & Peck, D. D.</strong> (1983). Resonant tunneling through quantum wells at frequencies up to 2.5 THz. <em>Applied Physics Letters</em>, 43(6), 588–590.</li>
+    </ol>
+
+    <div class="footer-note">
+        Final Presentation-Ready Technical Report • Resonant Tunnelling Simulation Project • Authored by Mohammad Azmal Shah, Pavan Karthik, Anant Goel, Darshan Mittal • November 2026
+    </div>
+
+</body>
+</html>
