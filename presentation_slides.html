@@ -62,7 +62,6 @@
             }
         }
 
-        /* Slide Components */
         .category-tag {
             font-family: Calibri, 'Segoe UI', Arial, sans-serif;
             font-size: 11pt;
@@ -331,35 +330,43 @@
         <div class="category-tag">Project Background</div>
         <div class="slide-title">Motivation: Overcoming Classical Drift Limits</div>
         <div class="header-line"></div>
-        <div class="slide-content">
-            <div class="card col-3">
-                <div class="card-title">1. Classical Drift Limits</div>
-                <div class="card-body">
-                    <ul>
-                        <li><strong>Velocity Saturation:</strong> Carrier velocity saturates at ~10<sup>7</sup> cm/s, imposing transit delays.</li>
-                        <li><strong>Frequency Ceiling:</strong> Classical transistors (HEMTs, BJTs) cutoff below 500 GHz.</li>
-                        <li><strong>Leakage &amp; Scaling:</strong> Gate oxide tunneling and 60 mV/dec subthreshold limit CMOS.</li>
-                    </ul>
+        <div class="slide-content" style="flex-direction: column;">
+            <div style="display: flex; gap: 24px; flex: 1;">
+                <div class="card col-3">
+                    <div class="card-title">1. Classical Drift Limits</div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Speed Limit:</strong> Electrons bump into atoms; drift velocity saturates at ~10<sup>7</sup> cm/s.</li>
+                            <li><strong>Frequency Ceiling:</strong> Normal transistors cannot exceed 500 GHz.</li>
+                            <li><strong>Scaling Barrier:</strong> Gate oxide leakage and heat prevent smaller chip scaling.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card col-3">
+                    <div class="card-title">2. The Quantum Solution</div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Wave Tunnelling:</strong> Electrons behave like waves and leak straight through thin walls.</li>
+                            <li><strong>Femtosecond Speed:</strong> Cavity transit takes only ~164 fs (quadrillionths of a second!).</li>
+                            <li><strong>Perfect Flow (T &rarr; 1.0):</strong> Resonant wave alignment makes thick barriers seem invisible.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card col-3">
+                    <div class="card-title">3. Macroscopic NDR Impact</div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Negative Resistance:</strong> Increasing voltage knocks levels out of sync, abruptly cutting current.</li>
+                            <li><strong>Record THz Oscillators:</strong> Fundamental RTD oscillators achieve &gt; 1.98 THz at 300 K.</li>
+                            <li><strong>Compact Logic:</strong> One diode replaces multi-transistor memory and switching cells.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="card col-3">
-                <div class="card-title">2. The Quantum Solution</div>
-                <div class="card-body">
-                    <ul>
-                        <li><strong>Resonant Tunneling:</strong> Exploits wave mechanics rather than suppressing them.</li>
-                        <li><strong>Femtosecond Lifetime:</strong> Quasi-bound dwell time &tau; ~ 164 fs enables THz operation.</li>
-                        <li><strong>Coherent Phase Match:</strong> Round-trip interference yields near-unity transmission (<em>T &rarr; 1.0</em>).</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="card col-3">
-                <div class="card-title">3. Macroscopic NDR Impact</div>
-                <div class="card-body">
-                    <ul>
-                        <li><strong>Negative Resistance:</strong> <em>dI/dV &lt; 0</em> enables direct microwave &amp; THz amplification.</li>
-                        <li><strong>Record THz Oscillators:</strong> Fundamental RTD oscillators achieve &gt; 1.98 THz at 300 K.</li>
-                        <li><strong>Multi-Valued Logic:</strong> Single 2-terminal device replaces multi-transistor memory cells.</li>
-                    </ul>
+            <div class="card" style="padding: 12px 20px; background: #ffffff; border-color: #111827; margin-top: 10px;">
+                <div style="font-family: Calibri, sans-serif; font-size: 11pt; font-weight: bold; color: #6b7280; text-transform: uppercase;">In Plain Terms: Why This Matters</div>
+                <div style="font-family: Calibri, sans-serif; font-size: 12.5pt; color: #111827; margin-top: 2px;">
+                    Classical chips are bottlenecked because electrons collide with atoms as they drift. By placing two atomic walls just nanometers apart, electrons glide straight through via wave resonance in femtoseconds—making Resonant Tunnelling Diodes the fastest electronic oscillators in the world.
                 </div>
             </div>
         </div>
@@ -376,24 +383,24 @@
         <div class="header-line"></div>
         <div class="slide-content" style="flex-direction: column; gap: 12px;">
             <div class="card" style="padding: 12px 20px;">
-                <div class="card-title" style="margin-bottom: 4px; font-size: 15pt;">1. Exact Quantum Transport Solver (TMM)</div>
-                <div class="card-body">Formulate the Transfer Matrix Method with BenDaniel-Duke boundary conditions for variable effective mass <em>m*(x)</em> under arbitrary applied bias <em>V<sub>a</sub></em>.</div>
+                <div class="card-title" style="margin-bottom: 4px; font-size: 15pt;">1. Exact Quantum Transport Modeling</div>
+                <div class="card-body">Mathematically solve electron wave transmission through biased semiconductor barriers using the Transfer Matrix Method (TMM).</div>
             </div>
             <div class="card" style="padding: 12px 20px;">
-                <div class="card-title" style="margin-bottom: 4px; font-size: 15pt;">2. Parametric Sensitivity Sweeps</div>
-                <div class="card-body">Systematically quantify how barrier height (<em>V</em><sub>0</sub>), barrier thickness (<em>L<sub>b</sub></em>), and well width (<em>L<sub>w</sub></em>) govern transmission spectra <em>T(E)</em>, resonance linewidth (&Gamma;), and lifetime (&tau;).</div>
+                <div class="card-title" style="margin-bottom: 4px; font-size: 15pt;">2. Understand the Three Structural Knobs</div>
+                <div class="card-body">Systematically test how changing wall height (<em>V</em><sub>0</sub>), wall thickness (<em>L<sub>b</sub></em>), and room width (<em>L<sub>w</sub></em>) controls speed, leakage, and resonance.</div>
             </div>
             <div class="card" style="padding: 12px 20px;">
                 <div class="card-title" style="margin-bottom: 4px; font-size: 15pt;">3. Resonant Tunnelling Diode (RTD) I-V Solver</div>
-                <div class="card-body">Implement the macroscopic Tsu-Esaki current density formula at 300 K, extracting peak current <em>J<sub>peak</sub></em>, valley current <em>J<sub>valley</sub></em>, and PVCR.</div>
+                <div class="card-body">Calculate actual electrical current at room temperature (300 K) to demonstrate Negative Differential Resistance (<em>dI/dV &lt; 0</em>).</div>
             </div>
             <div class="card" style="padding: 12px 20px;">
-                <div class="card-title" style="margin-bottom: 4px; font-size: 15pt;">4. Dynamic 3D Time-Dependent Wavepacket Simulation</div>
-                <div class="card-body">Develop a dynamic Split-Step Fourier Method (SSFM) solver to visualize cavity standing-wave buildup on resonance vs. total reflection off resonance.</div>
+                <div class="card-title" style="margin-bottom: 4px; font-size: 15pt;">4. Dynamic 3D Wavepacket Movie</div>
+                <div class="card-body">Simulate moving electron wave packets in real time to visualize cavity trapping on resonance vs. bouncing off when mismatched.</div>
             </div>
             <div class="card" style="padding: 12px 20px;">
-                <div class="card-title" style="margin-bottom: 4px; font-size: 15pt;">5. Tri-Platform Open-Source Release</div>
-                <div class="card-body">Package the code into an interactive 3D WebGL web app on GitHub Pages, a zero-dependency Python desktop GUI, and an automated MATLAB research suite.</div>
+                <div class="card-title" style="margin-bottom: 4px; font-size: 15pt;">5. Free Open-Source Tri-Platform Tools</div>
+                <div class="card-body">Deliver an interactive 3D WebGL web simulation on GitHub Pages, a zero-dependency Python desktop app, and a complete MATLAB suite.</div>
             </div>
         </div>
         <div class="slide-footer">
@@ -405,15 +412,15 @@
     <!-- SLIDE 4: LITERATURE -->
     <div class="slide">
         <div class="category-tag">Literature Review</div>
-        <div class="slide-title">Literature Survey &amp; Milestone Historical Studies</div>
+        <div class="slide-title">Literature Survey &amp; Milestone Studies</div>
         <div class="header-line"></div>
         <div class="slide-content">
             <table class="academic-table">
                 <thead>
                     <tr>
                         <th style="width: 22%;">Reference</th>
-                        <th style="width: 22%;">Focus / Structure</th>
-                        <th style="width: 32%;">Key Contribution</th>
+                        <th style="width: 20%;">Focus / Structure</th>
+                        <th style="width: 34%;">Key Breakthrough (In Plain Terms)</th>
                         <th style="width: 24%;">Relevance to Project</th>
                     </tr>
                 </thead>
@@ -421,32 +428,32 @@
                     <tr>
                         <td><strong>L. Esaki &amp; R. Tsu (1970)</strong></td>
                         <td>Semiconductor superlattices</td>
-                        <td>Predicted quantum size effects and negative differential conductivity</td>
-                        <td>Theoretical foundation of engineered potential barriers</td>
+                        <td>Predicted that periodic barriers create artificial quantum energy bands</td>
+                        <td>Foundational theory of engineered quantum barriers</td>
                     </tr>
                     <tr>
                         <td><strong>R. Tsu &amp; L. Esaki (1973)</strong></td>
-                        <td>Finite superlattice tunneling</td>
-                        <td>Derived standard electrical tunneling current integral formula</td>
-                        <td>Exact formulation implemented in our RTD I-V solver</td>
+                        <td>Tunneling current theory</td>
+                        <td>Derived standard equation connecting quantum transmission to electrical current</td>
+                        <td>Exact equation used in our RTD current-voltage solver</td>
                     </tr>
                     <tr>
                         <td><strong>L. L. Chang et al. (1974)</strong></td>
                         <td>GaAs/AlGaAs double barrier</td>
-                        <td>First experimental measurement of resonant tunneling and NDR</td>
-                        <td>Provides baseline physical parameters for GaAs/AlGaAs</td>
+                        <td>First physical lab demonstration of resonant tunneling and negative resistance</td>
+                        <td>Provides baseline dimensions for our simulation</td>
                     </tr>
                     <tr>
                         <td><strong>D. BenDaniel &amp; C. Duke (1966)</strong></td>
                         <td>Heterointerface boundary</td>
-                        <td>Derived current-conserving boundary conditions for variable <em>m*(x)</em></td>
-                        <td>Exact matching conditions implemented in our TMM matrix</td>
+                        <td>Formulated matching rules when electron mass changes across boundaries</td>
+                        <td>Prevents false math artifacts across different materials in TMM</td>
                     </tr>
                     <tr>
                         <td><strong>S. Suzuki &amp; M. Asada (2022)</strong></td>
                         <td>InP RTD THz oscillators</td>
-                        <td>Achieved fundamental room-temperature continuous oscillation at 1.98 THz</td>
-                        <td>Validates modern practical applications in THz sources</td>
+                        <td>Built room-temperature oscillators operating up to 1.98 THz using RTDs</td>
+                        <td>Proves practical industrial use for ultra-fast 6G wireless</td>
                     </tr>
                 </tbody>
             </table>
@@ -460,20 +467,20 @@
     <!-- SLIDE 5: FABRY-PEROT -->
     <div class="slide">
         <div class="category-tag">Physical Mechanism</div>
-        <div class="slide-title">Working Principle: The Fabry-Pérot Analogy</div>
+        <div class="slide-title">Working Principle: The Organ Pipe &amp; Quantum Mirror</div>
         <div class="header-line"></div>
         <div class="slide-content">
             <div class="card col-2">
-                <div class="card-title">de Broglie Wave Interference</div>
+                <div class="card-title">How Does Resonant Tunnelling Work?</div>
                 <div class="card-body">
                     <ul>
-                        <li><strong>Optical Analogy:</strong> Double barriers act as partially reflective quantum mirrors, forming a resonant cavity.</li>
-                        <li><strong>Phase Matching:</strong> Constructive interference occurs when round-trip phase satisfies:
+                        <li><strong>The Quantum Mirror:</strong> Two ultra-thin semiconductor walls create a microscopic "quantum room" (well) between them.</li>
+                        <li><strong>The Organ Pipe Analogy:</strong> Just as an organ pipe or guitar string only rings loudly at specific musical notes, the well only accepts electron waves with a matching wavelength.</li>
+                        <li><strong>Round-Trip Resonance:</strong> When incoming electron energy matches the cavity note (<em>E</em><sub>1</sub>), reflections amplify constructively:
                             <div class="formula-box"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>2</mn><msub><mi>k</mi><mi>w</mi></msub><msub><mi>L</mi><mi>w</mi></msub><mo>+</mo><msub><mi>ϕ</mi><mn>1</mn></msub><mo>+</mo><msub><mi>ϕ</mi><mn>2</mn></msub><mo>=</mo><mn>2</mn><mi>π</mi><mi>n</mi><mo separator="true">,</mo><mspace width="1em"/><mi>n</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mo>…</mo></mrow><annotation encoding="application/x-tex">2 k_w L_w + \phi_1 + \phi_2 = 2 \pi n, \quad n = 1, 2, 3, \dots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord">2</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0315em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">ϕ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">ϕ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">2</span><span class="mord mathnormal">πn</span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span></span></span></span></span></div>
                         </li>
-                        <li><strong>Cavity Amplification:</strong> At resonance <em>E</em><sub>1</sub>, standing-wave probability density |&psi;|<sup>2</sup> inside the well amplifies by <strong>&gt; 54&times;</strong>.</li>
-                        <li><strong>Near-Unity Transmission:</strong> Despite thick barriers, coherent constructive interference drives transmission <em>T &rarr; 1.00</em>.</li>
-                        <li><strong>Off-Resonance Quenching:</strong> Electrons with <em>E &ne; E</em><sub>1</sub> suffer destructive interference, causing &gt; 99% barrier reflection.</li>
+                        <li><strong>Walls Vanish (T &rarr; 100%):</strong> Constructive interference amplifies probability density inside by <strong>&gt; 54&times;</strong>, and electrons sail straight through!</li>
+                        <li><strong>Wrong Note = Bounces Off:</strong> If the electron energy doesn't match <em>E</em><sub>1</sub>, waves cancel out and &gt; 99% bounces straight back.</li>
                     </ul>
                 </div>
             </div>
@@ -497,11 +504,11 @@
                 <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">1. BenDaniel-Duke 1D Effective-Mass Equation</div>
                 <div class="card-body">
                     <div class="formula-box"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo>−</mo><mfrac><msup><mi mathvariant="normal">ℏ</mi><mn>2</mn></msup><mn>2</mn></mfrac><mfrac><mi>d</mi><mrow><mi>d</mi><mi>x</mi></mrow></mfrac><mrow><mo fence="true">[</mo><mfrac><mn>1</mn><mrow><msup><mi>m</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mfrac><mfrac><mrow><mi>d</mi><mi>ψ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac><mo fence="true">]</mo></mrow><mo>+</mo><mi>V</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>ψ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>E</mi><mi>ψ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">-\frac{\hbar^2}{2} \frac{d}{dx}\left[ \frac{1}{m^*(x)} \frac{d\psi(x)}{dx} \right] + V(x) \psi(x) = E \psi(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.4411em;vertical-align:-0.95em;"></span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">ℏ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord mathnormal">x</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6147em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord mathnormal">x</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.03588em;">ψ</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mord mathnormal" style="margin-right:0.03588em;">ψ</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord mathnormal" style="margin-right:0.03588em;">ψ</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></span></div>
-                    <strong>Boundary Matching:</strong> Continuity of &psi;(<em>x</em>) and (1/<em>m*</em>)(<em>d&psi;/dx</em>) across heterojunctions strictly conserves quantum probability flux.
+                    <strong>In Plain Terms:</strong> Describes how electron waves travel through materials where effective mass <em>m*</em> changes. Matching boundary conditions ensures no electrons magically disappear at interfaces.
                 </div>
             </div>
             <div class="card" style="padding: 14px 22px;">
-                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">2. Piecewise Discretization &amp; Sinc Stabilization</div>
+                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">2. Slicing the Barriers &amp; Sinc Stabilization</div>
                 <div class="card-body">
                     <div class="formula-box"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="bold">M</mi><mi>j</mi></msub><mo>=</mo><mrow><mo fence="true">(</mo><mtable rowspacing="0.16em" columnalign="center center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>cos</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>k</mi><mi>j</mi></msub><mi mathvariant="normal">Δ</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mfrac><msubsup><mi>m</mi><mi>j</mi><mo>∗</mo></msubsup><msub><mi>k</mi><mi>j</mi></msub></mfrac><mi>sin</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>k</mi><mi>j</mi></msub><mi mathvariant="normal">Δ</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mfrac><msub><mi>k</mi><mi>j</mi></msub><msubsup><mi>m</mi><mi>j</mi><mo>∗</mo></msubsup></mfrac><mi>sin</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>k</mi><mi>j</mi></msub><mi mathvariant="normal">Δ</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>cos</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>k</mi><mi>j</mi></msub><mi mathvariant="normal">Δ</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mathbf{M}_j = \begin{pmatrix} \cos(k_j \Delta x) &amp; \frac{m_j^*}{k_j} \sin(k_j \Delta x) \\ -\frac{k_j}{m_j^*} \sin(k_j \Delta x) &amp; \cos(k_j \Delta x) \end{pmatrix}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9722em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathbf">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3.6em;vertical-align:-1.55em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.05em;"><span class="pstrut" style="height:5.6em;"></span><span style="width:0.875em;height:3.600em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.875em' height='3.600em' viewBox='0 0 875 3600'><path d='M863,9c0,-2,-2,-5,-6,-9c0,0,-17,0,-17,0c-12.7,0,-19.3,0.3,-20,1
 c-5.3,5.3,-10.3,11,-15,17c-242.7,294.7,-395.3,682,-458,1162c-21.3,163.3,-33.3,349,
@@ -519,14 +526,14 @@ c0,7.3,5.7,11,17,11c0,0,11,0,11,0c9.3,0,14.3,-0.3,15,-1c5.3,-5.3,10.3,-11,15,-17
 c242.7,-294.7,395.3,-681.7,458,-1161c21.3,-164.7,33.3,-350.7,36,-558
 l0,-144c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
 -470,-1265c-4.7,-6,-9.7,-11.7,-15,-17c-0.7,-0.7,-6.7,-1,-18,-1z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span></span></span></span></span></span></span></div>
-                    <strong>Sinc Taylor Series:</strong> Evaluates sin(<em>k<sub>j</sub></em>&Delta;<em>x</em>)/<em>k<sub>j</sub></em> via &Delta;<em>x</em> - (<em>k<sub>j</sub></em><sup>2</sup>&Delta;<em>x</em><sup>3</sup>/6) when <em>E &rarr; V<sub>j</sub></em>, eliminating 0/0 numerical floating-point errors.
+                    <strong>In Plain Terms:</strong> When voltage tilts the barriers, we chop the slanted hill into tiny flat steps. When energy matches a step height (<em>E &rarr; V<sub>j</sub></em>), Taylor series sinc expansion prevents computer divide-by-zero crashes.
                 </div>
             </div>
             <div class="card" style="padding: 14px 22px;">
-                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">3. Matrix Cascading &amp; Transmission Formula</div>
+                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">3. Multiplying Matrices to Get Tunneling Probability T(E)</div>
                 <div class="card-body">
                     <div class="formula-box"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mtext>Re</mtext><mo stretchy="false">(</mo><msub><mi>k</mi><mi>R</mi></msub><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><msubsup><mi>m</mi><mi>R</mi><mo>∗</mo></msubsup></mrow><mrow><msub><mi>k</mi><mi>L</mi></msub><mi mathvariant="normal">/</mi><msubsup><mi>m</mi><mi>L</mi><mo>∗</mo></msubsup></mrow></mfrac><mi mathvariant="normal">∣</mi><mi>t</mi><msup><mi mathvariant="normal">∣</mi><mn>2</mn></msup><mo separator="true">,</mo><mspace width="1em"/><mi>R</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>=</mo><mi mathvariant="normal">∣</mi><mi>r</mi><msup><mi mathvariant="normal">∣</mi><mn>2</mn></msup><mo separator="true">,</mo><mspace width="1em"/><mi>T</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>+</mo><mi>R</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1.0000</mn></mrow><annotation encoding="application/x-tex">T(E) = \frac{\text{Re}(k_R) / m_R^*}{k_L / m_L^*} |t|^2, \quad R(E) = |r|^2, \quad T(E) + R(E) = 1.0000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4065em;vertical-align:-0.9795em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0315em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6705em;"><span style="top:-2.4065em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">L</span></span></span><span style="top:-3.0448em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2935em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Re</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0315em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord">/</span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-2.4247em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2753em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9795em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord">∣</span><span class="mord mathnormal">t</span><span class="mord"><span class="mord">∣</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord"><span class="mord">∣</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1.0000</span></span></span></span></span></div>
-                    <strong>Global Matrix:</strong> Multiplies layer matrices sequentially (<strong>M</strong><sub><em>tot</em></sub> = &prod; <strong>M</strong><sub><em>j</em></sub>) to solve exact transmission across arbitrary tilted band profiles.
+                    <strong>In Plain Terms:</strong> Like chaining optical lenses in a camera, multiplying slice matrices directly calculates what percentage of incoming electrons successfully tunnel through to the other side.
                 </div>
             </div>
         </div>
@@ -539,11 +546,11 @@ l0,-144c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
     <!-- SLIDE 7: TSU-ESAKI & SSFM -->
     <div class="slide">
         <div class="category-tag">Theoretical Methodology</div>
-        <div class="slide-title">Methodology: Tsu-Esaki Transport &amp; Dynamic SSFM</div>
+        <div class="slide-title">Methodology: Tsu-Esaki Current &amp; Wavepacket Movie</div>
         <div class="header-line"></div>
         <div class="slide-content">
             <div class="card col-2">
-                <div class="card-title">Tsu-Esaki Diode Current Density</div>
+                <div class="card-title">Calculating Diode Current (Tsu-Esaki)</div>
                 <div class="card-body">
                     <div class="formula-box"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>J</mi><mo stretchy="false">(</mo><msub><mi>V</mi><mi>a</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>e</mi><msup><mi>m</mi><mo>∗</mo></msup><msub><mi>k</mi><mi>B</mi></msub><mi>T</mi></mrow><mrow><mn>2</mn><msup><mi>π</mi><mn>2</mn></msup><msup><mi mathvariant="normal">ℏ</mi><mn>3</mn></msup></mrow></mfrac><msubsup><mo>∫</mo><mn>0</mn><mi mathvariant="normal">∞</mi></msubsup><mi>T</mi><mo stretchy="false">(</mo><mi>E</mi><mo separator="true">,</mo><msub><mi>V</mi><mi>a</mi></msub><mo stretchy="false">)</mo><mi>ln</mi><mo>⁡</mo><mrow><mo fence="true">(</mo><mfrac><mrow><mn>1</mn><mo>+</mo><mi>exp</mi><mo>⁡</mo><mrow><mo fence="true">(</mo><mfrac><mrow><msub><mi>E</mi><mi>F</mi></msub><mo>−</mo><mi>E</mi></mrow><mrow><msub><mi>k</mi><mi>B</mi></msub><mi>T</mi></mrow></mfrac><mo fence="true">)</mo></mrow></mrow><mrow><mn>1</mn><mo>+</mo><mi>exp</mi><mo>⁡</mo><mrow><mo fence="true">(</mo><mfrac><mrow><msub><mi>E</mi><mi>F</mi></msub><mo>−</mo><mi>E</mi><mo>−</mo><mi>e</mi><msub><mi>V</mi><mi>a</mi></msub></mrow><mrow><msub><mi>k</mi><mi>B</mi></msub><mi>T</mi></mrow></mfrac><mo fence="true">)</mo></mrow></mrow></mfrac><mo fence="true">)</mo></mrow><mi>d</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">J(V_a) = \frac{e m^* k_B T}{2 \pi^2 \hbar^3} \int_0^\infty T(E, V_a) \ln\left( \frac{1 + \exp\left(\frac{E_F - E}{k_B T}\right)}{1 + \exp\left(\frac{E_F - E - e V_a}{k_B T}\right)} \right) dE</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.09618em;">J</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3.88em;vertical-align:-1.69em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord"><span class="mord">ℏ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0315em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4143em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">ln</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.05em;"><span class="pstrut" style="height:5.6em;"></span><span style="width:0.875em;height:3.600em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.875em' height='3.600em' viewBox='0 0 875 3600'><path d='M863,9c0,-2,-2,-5,-6,-9c0,0,-17,0,-17,0c-12.7,0,-19.3,0.3,-20,1
 c-5.3,5.3,-10.3,11,-15,17c-242.7,294.7,-395.3,682,-458,1162c-21.3,163.3,-33.3,349,
@@ -562,22 +569,22 @@ c242.7,-294.7,395.3,-681.7,458,-1161c21.3,-164.7,33.3,-350.7,36,-558
 l0,-144c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
 -470,-1265c-4.7,-6,-9.7,-11.7,-15,-17c-0.7,-0.7,-6.7,-1,-18,-1z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em;"><span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span></span></div>
                     <ul>
-                        <li><strong>Transverse Supply Integration:</strong> Integrates 1D transmission <em>T(E, V<sub>a</sub>)</em> against 2D Fermi electron supplies in the leads.</li>
-                        <li><strong>Room Temperature (300 K):</strong> <em>k<sub>B</sub> T</em> &approx; 25.85 meV introduces realistic thermal carrier broadening.</li>
-                        <li><strong>Resonant Peak Surge:</strong> When <em>V<sub>a</sub></em> pulls <em>E</em><sub>1</sub> into the emitter Fermi sea, current density surges to maximum <em>J<sub>peak</sub></em>.</li>
-                        <li><strong>NDR Quenching:</strong> When <em>E</em><sub>1</sub> drops below emitter conduction band edge, current plummets abruptly (<em>dI/dV &lt; 0</em>).</li>
+                        <li><strong>What the Formula Does:</strong> Counts all electrons waiting in the emitter reservoir and sums up how much total current flows across all energy levels.</li>
+                        <li><strong>Room Temperature (300 K):</strong> Accounts for heat thermal energy (25.85 meV) kicking electrons around.</li>
+                        <li><strong>Current Peak:</strong> When voltage pulls the well's resonant level into line with waiting electrons, current shoots up to a maximum.</li>
+                        <li><strong>Current Drop (NDR):</strong> Higher voltage knocks the level below the reservoir, shutting off the flow.</li>
                     </ul>
                 </div>
             </div>
             <div class="card col-2">
-                <div class="card-title">Split-Step Fourier Method (TDSE)</div>
+                <div class="card-title">Wavepacket Movie (Split-Step Fourier)</div>
                 <div class="card-body">
                     <div class="formula-box"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">Ψ</mi><mo stretchy="false">(</mo><mi>t</mi><mo>+</mo><mi mathvariant="normal">Δ</mi><mi>t</mi><mo stretchy="false">)</mo><mo>≈</mo><msup><mi>e</mi><mrow><mo>−</mo><mfrac><mrow><mi>i</mi><mi>V</mi><mi mathvariant="normal">Δ</mi><mi>t</mi></mrow><mrow><mn>2</mn><mi mathvariant="normal">ℏ</mi></mrow></mfrac></mrow></msup><msup><mi mathvariant="script">F</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mrow><mo fence="true">[</mo><msup><mi>e</mi><mrow><mo>−</mo><mfrac><mrow><mi>i</mi><mi mathvariant="normal">ℏ</mi><msup><mi>k</mi><mn>2</mn></msup><mi mathvariant="normal">Δ</mi><mi>t</mi></mrow><mrow><mn>2</mn><msup><mi>m</mi><mo>∗</mo></msup></mrow></mfrac></mrow></msup><mi mathvariant="script">F</mi><mrow><mo fence="true">[</mo><msup><mi>e</mi><mrow><mo>−</mo><mfrac><mrow><mi>i</mi><mi>V</mi><mi mathvariant="normal">Δ</mi><mi>t</mi></mrow><mrow><mn>2</mn><mi mathvariant="normal">ℏ</mi></mrow></mfrac></mrow></msup><mi mathvariant="normal">Ψ</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo fence="true">]</mo></mrow><mo fence="true">]</mo></mrow></mrow><annotation encoding="application/x-tex">\Psi(t + \Delta t) \approx e^{-\frac{i V \Delta t}{2 \hbar}} \mathcal{F}^{-1}\left[ e^{-\frac{i \hbar k^2 \Delta t}{2 m^*}} \mathcal{F}\left[ e^{-\frac{i V \Delta t}{2 \hbar}} \Psi(t) \right] \right]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Ψ</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Δ</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.856em;vertical-align:-0.65em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.0235em;"><span style="top:-3.413em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8721em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2ℏ</span></span></span></span><span style="top:-3.2255em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">iV</span><span class="mord mtight">Δ</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathcal" style="margin-right:0.09931em;">F</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">[</span></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.206em;"><span style="top:-3.413em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1329em;"><span style="top:-2.6342em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7593em;"><span style="top:-2.794em;margin-right:0.1em;"><span class="pstrut" style="height:2.5em;"></span><span class="mbin mtight">∗</span></span></span></span></span></span></span></span></span></span><span style="top:-3.2255em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mtight">ℏ</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.0484em;"><span style="top:-3.0484em;margin-right:0.1em;"><span class="pstrut" style="height:2.6444em;"></span><span class="mord mtight">2</span></span></span></span></span></span></span><span class="mord mtight">Δ</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3658em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span class="mord mathcal" style="margin-right:0.09931em;">F</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">[</span></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.0235em;"><span style="top:-3.413em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8721em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2ℏ</span></span></span></span><span style="top:-3.2255em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">iV</span><span class="mord mtight">Δ</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span class="mord">Ψ</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">]</span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">]</span></span></span></span></span></span></span></div>
                     <ul>
-                        <li><strong>Symmetric Strang Splitting:</strong> Splits kinetic and potential operators with second-order $O(\Delta t^3)$ local accuracy.</li>
-                        <li><strong>Dual-Domain Execution:</strong> Potential rotation in real space (<em>x, y</em>); kinetic dispersion in wavevector space (<em>k<sub>x</sub>, k<sub>y</sub></em>) via FFT.</li>
-                        <li><strong>Unconditionally Unitary:</strong> Preserves total wavefunction probability norm &int;|&Psi;|<sup>2</sup> <em>d</em><strong>r</strong> = 1.0000 exactly across all time steps.</li>
-                        <li><strong>Real-Time Dynamics:</strong> Directly animates wavepacket collision, standing-wave formation, and transmitted pulse train.</li>
+                        <li><strong>What the Solver Does:</strong> Acts like a high-speed quantum video camera, stepping through time (femtoseconds) to track the electron pulse.</li>
+                        <li><strong>Two-Step Trick:</strong> Applies barrier potential push in physical space, then flips into frequency space (FFT) to handle wave dispersion.</li>
+                        <li><strong>100% Probability Conserved:</strong> No electron disappears into thin air; total probability remains exactly 1.0000 across all time.</li>
+                        <li><strong>Visual Proof:</strong> Directly reveals cavity trapping on resonance versus immediate reflection off resonance.</li>
                     </ul>
                 </div>
             </div>
@@ -591,7 +598,7 @@ l0,-144c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
     <!-- SLIDE 8: RESULTS: TRANSMISSION SPECTRUM -->
     <div class="slide">
         <div class="category-tag">Simulation Results</div>
-        <div class="slide-title">Results: Transmission Spectrum &amp; Resonant States</div>
+        <div class="slide-title">Results: Transmission Spectrum &amp; Resonant Peak</div>
         <div class="header-line"></div>
         <div class="slide-content">
             <div class="img-card col-2">
@@ -599,24 +606,24 @@ l0,-144c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
             </div>
             <div class="col-2" style="display: flex; flex-direction: column; gap: 10px;">
                 <div class="metric-callout">
-                    <div class="metric-label">Resonant Energy (E₁)</div>
+                    <div class="metric-label">The Resonant Note (E₁)</div>
                     <div class="metric-value">88.0 meV (0.088 eV)</div>
-                    <div class="metric-desc">Lowest quasi-bound quantum well eigenstate.</div>
+                    <div class="metric-desc">Electrons with this exact energy pass through with ~100% transmission.</div>
                 </div>
                 <div class="metric-callout">
-                    <div class="metric-label">Linewidth (Γ at FWHM)</div>
+                    <div class="metric-label">Resonance Width (Γ at FWHM)</div>
                     <div class="metric-value">4.0 meV (0.004 eV)</div>
-                    <div class="metric-desc">Broadening due to finite barrier coupling.</div>
+                    <div class="metric-desc">Defines filter sharpness; narrower = sharper energy filter.</div>
                 </div>
                 <div class="metric-callout">
-                    <div class="metric-label">Dwell Lifetime (τ)</div>
+                    <div class="metric-label">Cavity Dwell Time (τ)</div>
                     <div class="metric-value">164.7 fs (1.65 × 10⁻¹³ s)</div>
-                    <div class="metric-desc">Mean particle dwell time in cavity: &tau; = &hbar; / &Gamma;.</div>
+                    <div class="metric-desc">How long the electron lingers in the cavity (&tau; = &hbar; / &Gamma; = ultrafast!).</div>
                 </div>
                 <div class="metric-callout">
-                    <div class="metric-label">Quality Factor &amp; Buildup</div>
-                    <div class="metric-value">Q = 22.0 &bull; 54.2× Amplification</div>
-                    <div class="metric-desc">Near-unity transmission (<em>T &rarr; 1.00</em>) &amp; internal buildup.</div>
+                    <div class="metric-label">Standing Wave Buildup</div>
+                    <div class="metric-value">54.2× Amplification</div>
+                    <div class="metric-desc">Trapped wave builds up to over 54 times the incident beam intensity (<em>Q</em> = 22.0).</div>
                 </div>
             </div>
         </div>
@@ -629,39 +636,36 @@ l0,-144c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
     <!-- SLIDE 9: RESULTS: SENSITIVITY SWEEPS -->
     <div class="slide">
         <div class="category-tag">Simulation Results</div>
-        <div class="slide-title">Results: Parametric Sensitivity Analysis</div>
+        <div class="slide-title">Results: The Three Structural Knobs (In Plain Terms)</div>
         <div class="header-line"></div>
         <div class="slide-content">
             <div class="card col-3">
-                <div class="card-title">1. Barrier Height (V₀)</div>
+                <div class="card-title">1. Wall Height (V₀)</div>
                 <div class="card-body">
                     <ul>
-                        <li><strong>Sweep Range:</strong> 0.20 eV to 0.60 eV (Al fraction <em>x</em> = 0.2 to 0.6).</li>
-                        <li><strong>Attenuation Parameter:</strong> &kappa; = [2 <em>m<sub>b</sub>*</em>(<em>V</em><sub>0</sub> - <em>E</em>)]<sup>1/2</sup> / &hbar; increases monotonically.</li>
-                        <li><strong>Leakage Suppression:</strong> Exponential suppression of sub-barrier leakage below 10<sup>-6</sup>.</li>
-                        <li><strong>State Confinement:</strong> Higher barriers elevate <em>E</em><sub>1</sub> due to reduced evanescent penetration.</li>
+                        <li><strong>What It Means:</strong> How tall the energy walls are (tested 0.20 to 0.60 eV).</li>
+                        <li><strong>Leakage Stopper:</strong> Taller walls exponentially block unwanted off-resonance leakage below 10<sup>-6</sup>.</li>
+                        <li><strong>Noise Filter:</strong> Acts like acoustic soundproofing, preventing unwanted stray electrons from leaking through.</li>
                     </ul>
                 </div>
             </div>
             <div class="card col-3">
-                <div class="card-title">2. Barrier Thickness (Lb)</div>
+                <div class="card-title">2. Wall Thickness (Lb)</div>
                 <div class="card-body">
                     <ul>
-                        <li><strong>Sweep Range:</strong> 1.5 nm to 4.5 nm.</li>
-                        <li><strong>Exponential Linewidth:</strong> Linewidth scales as &Gamma; &prop; exp(-2 &kappa; <em>L<sub>b</sub></em>).</li>
-                        <li><strong>Drastic Narrowing:</strong> Increasing <em>L<sub>b</sub></em> from 2 to 4 nm narrows &Gamma; from 18.5 meV to 0.85 meV.</li>
-                        <li><strong>Lifetime Trade-off:</strong> Dwell time &tau; expands from 35.6 fs to 774.5 fs (speed vs. current trade-off).</li>
+                        <li><strong>What It Means:</strong> How thick each barrier wall is (tested 1.5 to 4.5 nm).</li>
+                        <li><strong>Sharpness vs. Speed:</strong> Thicker walls narrow the resonance peak (sharper filter) but trap electrons longer.</li>
+                        <li><strong>The Trade-off:</strong> Increasing thickness from 2 to 4 nm slows dwell time from 35 fs to 775 fs (trades current for selectivity).</li>
                     </ul>
                 </div>
             </div>
             <div class="card col-3">
-                <div class="card-title">3. Well Width (Lw)</div>
+                <div class="card-title">3. Room Width (Lw)</div>
                 <div class="card-body">
                     <ul>
-                        <li><strong>Sweep Range:</strong> 3.0 nm to 8.0 nm.</li>
-                        <li><strong>Quantum Well Scaling:</strong> Eigen-energies scale as <em>E<sub>n</sub> &prop; 1 / L<sub>w</sub><sup>2</sup></em>.</li>
-                        <li><strong>Red Shift:</strong> Expanding <em>L<sub>w</sub></em> from 3 to 6 nm lowers <em>E</em><sub>1</sub> from 145 meV to 62 meV.</li>
-                        <li><strong>Harmonic States:</strong> For <em>L<sub>w</sub></em> &gt; 6.5 nm, higher-order states (<em>E</em><sub>2</sub>, <em>E</em><sub>3</sub>) enter the well.</li>
+                        <li><strong>What It Means:</strong> Width of the quantum room between walls (tested 3 to 8 nm).</li>
+                        <li><strong>Tuning the Musical Pitch:</strong> Resonant energy scales as 1/<em>L<sub>w</sub></em><sup>2</sup>. A wider room lowers the resonant note (from 145 meV down to 62 meV).</li>
+                        <li><strong>Harmonic Notes:</strong> Widening past 6.5 nm fits higher-order resonant states (<em>E</em><sub>2</sub>, <em>E</em><sub>3</sub>) inside the room.</li>
                     </ul>
                 </div>
             </div>
@@ -675,25 +679,20 @@ l0,-144c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
     <!-- SLIDE 10: RESULTS: RTD I-V -->
     <div class="slide">
         <div class="category-tag">Electrical Transport</div>
-        <div class="slide-title">Results: RTD Electrical Transport &amp; NDR Regimes</div>
+        <div class="slide-title">Results: Negative Resistance (The Sweet Spot Switch)</div>
         <div class="header-line"></div>
         <div class="slide-content">
             <div class="img-card col-2">
                 <img src="slide_figures/fig3_rtd_iv_curve.png" alt="RTD I-V Characteristic Curve">
             </div>
             <div class="card col-2">
-                <div class="card-title">Four Operational Transport Regimes</div>
+                <div class="card-title">How the Negative Resistance Switch Works</div>
                 <div class="card-body">
                     <ul>
-                        <li><strong>1. Equilibrium (Va = 0 V):</strong> <em>J</em> = 0. Well bound state <em>E</em><sub>1</sub> = 88 meV sits above the emitter Fermi sea (<em>E<sub>F</sub></em> = 40 meV).</li>
-                        <li><strong>2. Resonant Current Surge:</strong>
-                            <div class="formula-box"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>J</mi><mrow><mi>p</mi><mi>e</mi><mi>a</mi><mi>k</mi></mrow></msub><mo>=</mo><mn>1.18</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup><msup><mtext> A/cm</mtext><mn>2</mn></msup><mspace width="1em"/><mtext>at </mtext><msub><mi>V</mi><mrow><mi>p</mi><mi>e</mi><mi>a</mi><mi>k</mi></mrow></msub><mo>=</mo><mn>0.140</mn><mtext> V</mtext></mrow><annotation encoding="application/x-tex">J_{peak} = 1.18 \times 10^5 \text{ A/cm}^2 \quad \text{at } V_{peak} = 0.140 \text{ V}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.09618em;">J</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0962em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">ak</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1.18</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.2401em;vertical-align:-0.2861em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span><span class="mord"><span class="mord text"><span class="mord"> A/cm</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.954em;"><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord text"><span class="mord">at </span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">ak</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">0.140</span><span class="mord text"><span class="mord"> V</span></span></span></span></span></span></div>
-                            Bias aligns <em>E</em><sub>1</sub> with occupied emitter states.
-                        </li>
-                        <li><strong>3. NDR Region (0.14 V &lt; Va &lt; 0.20 V):</strong> Negative Differential Resistance (<em>dI/dV &lt; 0</em>). <em>E</em><sub>1</sub> drops below conduction band edge, abruptly quenching tunneling.</li>
-                        <li><strong>4. Valley Point &amp; PVCR:</strong>
-                            <div class="formula-box"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>PVCR</mtext><mo>=</mo><mfrac><msub><mi>J</mi><mrow><mi>p</mi><mi>e</mi><mi>a</mi><mi>k</mi></mrow></msub><msub><mi>J</mi><mrow><mi>v</mi><mi>a</mi><mi>l</mi><mi>l</mi><mi>e</mi><mi>y</mi></mrow></msub></mfrac><mo>=</mo><mfrac><mrow><mn>1.18</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup></mrow><mrow><mn>1.74</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow></mfrac><mo>≈</mo><mn>6.78</mn><mspace width="1em"/><mtext>at </mtext><mn>300</mn><mtext> K</mtext></mrow><annotation encoding="application/x-tex">\text{PVCR} = \frac{J_{peak}}{J_{valley}} = \frac{1.18 \times 10^5}{1.74 \times 10^4} \approx 6.78 \quad \text{at } 300 \text{ K}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">PVCR</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.3324em;vertical-align:-0.9721em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.09618em;">J</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0962em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">ll</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">ey</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.09618em;">J</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0962em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">ak</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9721em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2604em;vertical-align:-0.7693em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1.74</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1.18</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">6.78</span><span class="mspace" style="margin-right:1em;"></span><span class="mord text"><span class="mord">at </span></span><span class="mord">300</span><span class="mord text"><span class="mord"> K</span></span></span></span></span></span></div>
-                        </li>
+                        <li><strong>1. Off (0 V):</strong> No current flows. The internal room energy sits too high above waiting electrons.</li>
+                        <li><strong>2. Peak Sweet Spot (0.14 V):</strong> Current surges to <strong>1.18 &times; 10<sup>5</sup> A/cm<sup>2</sup></strong>! Voltage aligns the internal state with incoming electrons, opening the floodgates.</li>
+                        <li><strong>3. The Drop / NDR (0.14 V &ndash; 0.20 V):</strong> Increasing voltage pushes the state past alignment. Electrons can no longer tunnel, and current abruptly plummets! Turning voltage UP makes current go DOWN (<em>dI/dV &lt; 0</em>).</li>
+                        <li><strong>4. Valley Point &amp; PVCR (0.20 V):</strong> Current drops to 1.74 &times; 10<sup>4</sup> A/cm<sup>2</sup>. The Peak-to-Valley ratio is <strong>6.78</strong> at room temperature.</li>
                     </ul>
                 </div>
             </div>
@@ -714,15 +713,19 @@ l0,-144c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
                 <img src="slide_figures/fig4_wavepacket_comparison.png" alt="Wavepacket Dynamics Comparison">
             </div>
             <div class="card col-2">
-                <div class="card-title">Wavepacket Collision &amp; Trapping Dynamics</div>
+                <div class="card-title">Watching the Quantum Wave in Real Time</div>
                 <div class="card-body">
                     <ul>
-                        <li><strong>Incident Gaussian Pulse:</strong> Initialized in emitter lead with central energy <em>E</em><sub>0</sub>:
-                            <div class="formula-box"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">Ψ</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mn>2</mn><mi>π</mi><msup><mi>σ</mi><mn>2</mn></msup><msup><mo stretchy="false">)</mo><mrow><mo>−</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>4</mn></mrow></msup><mi>exp</mi><mo>⁡</mo><mrow><mo fence="true">[</mo><mo>−</mo><mfrac><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><msub><mi>x</mi><mn>0</mn></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><mrow><mn>4</mn><msup><mi>σ</mi><mn>2</mn></msup></mrow></mfrac><mo fence="true">]</mo></mrow><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>i</mi><msub><mi>k</mi><mn>0</mn></msub><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Psi(x, 0) = (2\pi\sigma^2)^{-1/4} \exp\left[ -\frac{(x - x_0)^2}{4\sigma^2} \right] \exp(i k_0 x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Ψ</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4411em;vertical-align:-0.95em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1/4</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">exp</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">exp</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0315em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></span></div>
+                        <li><strong>The Moving Wave Packet:</strong> Represents a single moving electron traveling toward the double barrier structure.</li>
+                        <li><strong>On-Resonance (Matching Note E = 88 meV):</strong>
+                            <br>&bull; The wave strikes the barrier and enters the room.
+                            <br>&bull; Internal reflections amplify into a steady standing wave (<em>t</em> &approx; 50–120 fs).
+                            <br>&bull; A clean, coherent pulse smoothly transmits out the other side.
                         </li>
-                        <li><strong>On-Resonance Dynamics (E₀ = 88 meV):</strong> Wavepacket splits at first barrier; multiple internal reflections establish a standing wave over <em>t</em> &approx; 50–120 fs, and coherent pulses transmit into collector.</li>
-                        <li><strong>Off-Resonance Dynamics (E₀ = 44 meV):</strong> Over 99% of probability density reflects off the first barrier; cavity penetration is negligible (|&psi;|<sup>2</sup> &lt; 10<sup>-4</sup>).</li>
-                        <li><strong>3D Potential Landscape:</strong> Simulates real-time Stark band slanting, dynamically tuning resonance into and out of alignment.</li>
+                        <li><strong>Off-Resonance (Mismatched Note E = 44 meV):</strong>
+                            <br>&bull; Like a water wave hitting a concrete seawall, over 99% of the wave splashes straight backwards.
+                            <br>&bull; Zero standing wave forms inside the room; nothing transmits.
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -743,10 +746,10 @@ l0,-144c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
                 <div class="card-title">1. Interactive 3D Web App</div>
                 <div class="card-body">
                     <ul>
-                        <li><strong>Platform:</strong> Modern web browsers (Desktop &amp; Mobile) hosted on GitHub Pages.</li>
-                        <li><strong>Rendering Engine:</strong> WebGL / Three.js 3D quantum cavity with Canvas 3D fallback.</li>
-                        <li><strong>Real-Time Controls:</strong> Interactive sliders for <em>V</em><sub>0</sub>, <em>L<sub>b</sub></em>, <em>L<sub>w</sub></em>, <em>V<sub>a</sub></em>, and electron energy <em>E</em>.</li>
-                        <li><strong>Live Deployment:</strong> <a href="https://anantgoel2005.github.io/double-barrier-simulation/">anantgoel2005.github.io/...</a></li>
+                        <li><strong>Zero Setup Needed:</strong> Runs immediately in any modern browser on phone, tablet, or PC.</li>
+                        <li><strong>Interactive 3D Cavity:</strong> Rotate and zoom a 3D WebGL model of the quantum barriers and wavepacket.</li>
+                        <li><strong>Live Sliders:</strong> Adjust wall height, thickness, well width, and voltage to see transmission change instantly.</li>
+                        <li><strong>Try It Live:</strong> <a href="https://anantgoel2005.github.io/double-barrier-simulation/">anantgoel2005.github.io/...</a></li>
                     </ul>
                 </div>
             </div>
@@ -754,10 +757,10 @@ l0,-144c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
                 <div class="card-title">2. Desktop Python GUI</div>
                 <div class="card-body">
                     <ul>
-                        <li><strong>Zero Dependencies:</strong> Pure Python standard library (<code>tkinter</code>, <code>math</code>, <code>cmath</code>). Zero pip packages needed.</li>
-                        <li><strong>4-Quadrant Dashboard:</strong> Potential Profile, Transmission <em>T(E)</em>, RTD <em>I-V</em>, and 3D Wireframe Cavity.</li>
-                        <li><strong>High Performance:</strong> Optimized pure-Python complex matrix multiplication &amp; 3D projection.</li>
-                        <li><strong>1-Click Launch:</strong> Run via <code>python rtd_gui_python.py</code> or batch file.</li>
+                        <li><strong>No External Packages:</strong> Built using 100% pure Python standard library (<code>tkinter</code>). No pip installs required!</li>
+                        <li><strong>4 Live Dashboards:</strong> Displays Potential Profile, Transmission <em>T(E)</em>, RTD <em>I-V</em> curve, and 3D wireframe.</li>
+                        <li><strong>Instant Response:</strong> High-speed complex matrix math renders slider updates smoothly.</li>
+                        <li><strong>1-Click Launch:</strong> Double click <code>Launch_Python_GUI.bat</code> on Windows.</li>
                     </ul>
                 </div>
             </div>
@@ -765,10 +768,10 @@ l0,-144c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
                 <div class="card-title">3. MATLAB Research Suite</div>
                 <div class="card-body">
                     <ul>
-                        <li><strong>Core Scripts:</strong> <code>calculate_tmm.m</code>, <code>calculate_rtd_iv.m</code>, and <code>find_resonance_peaks.m</code>.</li>
-                        <li><strong>3D Dynamic Solver:</strong> <code>rtd_3d_wavepacket.m</code> implements Split-Step Fourier TDSE animation.</li>
-                        <li><strong>3D Energy Landscapes:</strong> <code>rtd_3d_landscape.m</code> models 2D/3D Stark surfaces under bias.</li>
-                        <li><strong>Interactive GUI:</strong> <code>rtd_interactive_app.m</code> provides full slider dashboard.</li>
+                        <li><strong>Automated Solver Scripts:</strong> <code>calculate_tmm.m</code>, <code>calculate_rtd_iv.m</code>, and <code>find_resonance_peaks.m</code>.</li>
+                        <li><strong>3D Wavepacket Movies:</strong> <code>rtd_3d_wavepacket.m</code> outputs dynamic 3D split-step Fourier simulations.</li>
+                        <li><strong>Stark Energy Maps:</strong> <code>rtd_3d_landscape.m</code> models full 3D energy surfaces as bias voltage changes.</li>
+                        <li><strong>GUI App Included:</strong> <code>rtd_interactive_app.m</code> provides full slider dashboard.</li>
                     </ul>
                 </div>
             </div>
@@ -782,24 +785,24 @@ l0,-144c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
     <!-- SLIDE 13: CONCLUSIONS -->
     <div class="slide">
         <div class="category-tag">Project Conclusions</div>
-        <div class="slide-title">Main Conclusions &amp; Physical Insights</div>
+        <div class="slide-title">Main Conclusions: What We Learned</div>
         <div class="header-line"></div>
         <div class="slide-content" style="flex-direction: column; gap: 14px;">
             <div class="card" style="padding: 14px 22px;">
-                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">1. Verification of Coherent Resonant Tunnelling</div>
-                <div class="card-body">The Transfer Matrix Method rigorously proved that constructive phase matching amplifies internal standing-wave probability density by &gt; 54&times;, yielding near-unity transmission (<em>T &rarr; 1.00</em>) at <em>E</em><sub>1</sub> = 88.0 meV.</div>
+                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">1. Quantum Waves Can Make Barriers Invisible</div>
+                <div class="card-body">Constructive de Broglie wave interference inside a double-barrier cavity amplifies probability by &gt; 54&times;, allowing electrons with matching energy (88 meV) to pass straight through with near 100% transmission.</div>
             </div>
             <div class="card" style="padding: 14px 22px;">
-                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">2. Microscopic Origin of Macroscopic NDR</div>
-                <div class="card-body">The N-shaped RTD current-voltage curve was quantitatively mapped to sub-band alignment with the emitter Fermi sea, demonstrating <em>J<sub>peak</sub></em> = 1.18 &times; 10<sup>5</sup> A/cm<sup>2</sup> at 0.14 V and PVCR = 6.78 at 300 K.</div>
+                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">2. Origin of Negative Resistance Discovered</div>
+                <div class="card-body">The diode's unique N-shaped curve happens because voltage tunes the well's energy level into alignment (peak current), then pulls it past alignment (sudden current drop), yielding a high PVCR of 6.78.</div>
             </div>
             <div class="card" style="padding: 14px 22px;">
-                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">3. Fundamental Speed-Current Trade-Off</div>
-                <div class="card-body">Quasi-bound dwell lifetime &tau; = &hbar; / &Gamma; scales exponentially with barrier thickness <em>L<sub>b</sub></em>. Increasing <em>L<sub>b</sub></em> from 2 to 4 nm narrows &Gamma; from 18.5 to 0.85 meV (expanding &tau; from 35.6 to 774.5 fs).</div>
+                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">3. Speed vs. Selectivity Trade-Off Quantified</div>
+                <div class="card-body">Thicker barrier walls create an extremely sharp energy filter, but trap electrons longer (~775 fs). Thinner walls allow lightning-fast switching (~35 fs) with higher current flow.</div>
             </div>
             <div class="card" style="padding: 14px 22px;">
-                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">4. Open-Source Multi-Platform Deployment</div>
-                <div class="card-body">Bridged theoretical condensed matter physics with interactive visualization by publishing a tri-platform suite: 3D WebGL web app on GitHub Pages, zero-dependency Python desktop GUI, and MATLAB suite.</div>
+                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">4. Complex Physics Made Accessible &amp; Open Source</div>
+                <div class="card-body">Bridged theoretical nanoelectronics with intuitive engineering tools: a public GitHub repository, zero-install 3D WebGL web simulation, and lightweight Python GUI.</div>
             </div>
         </div>
         <div class="slide-footer">
@@ -815,20 +818,20 @@ l0,-144c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
         <div class="header-line"></div>
         <div class="slide-content" style="flex-direction: column; gap: 14px;">
             <div class="card" style="padding: 14px 22px;">
-                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">1. Self-Consistent Poisson-Schrödinger Solver</div>
-                <div class="card-body">Incorporate dynamic space-charge accumulation inside the quantum well cavity to model intrinsic electrostatic bistability, hysteresis loops, and plateau features in the RTD <em>I-V</em> curve.</div>
+                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">1. Space Charge &amp; Memory Hysteresis (Poisson-Schrödinger)</div>
+                <div class="card-body">Account for electrons piling up inside the quantum well. This trapped charge creates electrostatic memory (hysteresis), enabling ultra-dense quantum memory cells.</div>
             </div>
             <div class="card" style="padding: 14px 22px;">
-                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">2. Non-Equilibrium Green's Function (NEGF) Formalism</div>
-                <div class="card-body">Account for dissipative, phase-breaking scattering mechanisms, including longitudinal optical (LO) phonon emission, acoustic phonons, and interface roughness at elevated temperatures.</div>
+                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">2. Real-World Heat &amp; Vibration Scattering (NEGF)</div>
+                <div class="card-body">Incorporate electron collisions with lattice vibrations (phonons) and rough wall edges to model performance at extreme operating temperatures.</div>
             </div>
             <div class="card" style="padding: 14px 22px;">
-                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">3. High-Bandgap-Offset Heterostructure Systems</div>
-                <div class="card-body">Investigate InGaAs/AlAs and InAs/AlSb heterostructures with conduction band discontinuities <em>V</em><sub>0</sub> &gt; 1.2 eV to achieve room-temperature Peak-to-Valley Current Ratios (PVCR &gt; 25) for ultra-fast logic.</div>
+                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">3. Super-High Barriers for 6G Wireless (InGaAs/AlAs)</div>
+                <div class="card-body">Explore newer semiconductor alloys with walls over 1.2 eV tall to achieve record Peak-to-Valley ratios (PVCR &gt; 25) for ultra-low-noise terahertz communication chips.</div>
             </div>
             <div class="card" style="padding: 14px 22px;">
-                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">4. Multi-Stage Quantum Cascade Lasers (QCLs)</div>
-                <div class="card-body">Extend the single-cavity TMM framework to periodic superlattices (20–50 stages) to model intersubband optical transitions and population inversion for mid-infrared and THz optical sources.</div>
+                <div class="card-title" style="margin-bottom: 6px; font-size: 15pt;">4. Quantum Cascade Lasers (Multi-Barrier Superlattices)</div>
+                <div class="card-body">Stack 20 to 50 barrier cavities in series to create cascading optical transitions, emitting coherent infrared and terahertz laser beams for medical and security imaging.</div>
             </div>
         </div>
         <div class="slide-footer">

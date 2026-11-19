@@ -325,6 +325,20 @@
         Despite the foundational importance of resonant tunneling, visualizing the complex interplay between de Broglie wave interference, complex eigen-energies, and voltage-dependent band bending remains difficult with static 1D textbook diagrams. In this project, we address this challenge by delivering an exact Transfer Matrix solver, a Tsu-Esaki diode transport engine, and real-time 3D wavepacket animations deployed across multiple platforms.
     </p>
 
+    <h2>A. Intuitive Physical Analogy: How It Works in Plain Terms</h2>
+    <p>
+        To understand resonant tunnelling without requiring advanced quantum mechanics, consider three everyday analogies:
+    </p>
+    <p>
+        <strong>1. Tunneling (The Ghostly Wave):</strong> In classical mechanics, rolling a ball up a hill requires sufficient kinetic energy; if the ball lacks the speed to reach the summit, it inevitably rolls back down. At the nanoscale, however, electrons behave simultaneously as particles and probability waves. When an electron wave encounters an ultra-thin barrier—only 10 to 15 atoms thick—part of the wave packet can "leak" or ghost straight through the barrier, even when the electron's energy is well below the barrier crest.
+    </p>
+    <p>
+        <strong>2. Resonant Cavity (The Organ Pipe / Playground Swing):</strong> Placing two barriers side-by-side creates a microscopic "quantum room" (well) between them. Similar to an organ pipe or acoustic guitar body that only rings loudly at specific resonant pitches, or pushing a swing at its natural cadence, the quantum well only accepts electron waves with a matching wavelength. When an incoming electron's energy matches this natural cavity note (<em>E</em><sub>1</sub>), internal round-trip reflections amplify constructively. The barriers become virtually transparent, transmitting the electron with near 100% probability. If the incoming energy is off-pitch, waves interfere destructively and bounce back.
+    </p>
+    <p>
+        <strong>3. Negative Differential Resistance (The Sweet Spot Switch):</strong> In ordinary copper wire or resistors, turning up the voltage knob pushes more current (Ohm's Law). In a Resonant Tunnelling Diode, increasing the voltage aligns the quantum well's resonant energy note with the incoming electrons, causing current to surge to a sharp peak. However, turning the voltage up further pulls the level <em>past</em> the alignment window—knocking it completely out of sync. Suddenly, current plummets! This counter-intuitive property, where turning voltage <em>up</em> causes current to go <em>down</em> (<em>dI/dV &lt; 0</em>), makes RTDs ultra-fast electronic switches capable of generating terahertz oscillations for next-generation 6G communications.
+    </p>
+
     <!-- ============================================================== -->
     <!-- SECTION II: RELATED WORK & LITERATURE SURVEY                   -->
     <!-- ============================================================== -->
@@ -664,14 +678,14 @@ l0,-144c-2,-159.3,-10,-310.7,-24,-454c-53.3,-528,-210,-949.7,
         </div>
     </div>
 
-    <h2>B. Parametric Sensitivity Analysis</h2>
+    <h2>B. Parametric Sensitivity Analysis: The Three Structural Knobs</h2>
     <p>
-        Systematic parameter sweeps revealed clear physical scaling laws:
+        From an engineering perspective, the double-barrier structure offers three intuitive design "knobs" that govern quantum transport:
     </p>
     <ul>
-        <li><strong>Barrier Height (<em>V</em><sub>0</sub>):</strong> Increasing <em>V</em><sub>0</sub> from 0.20 to 0.60 eV increases the barrier attenuation coefficient &kappa; = [2 <em>m<sub>b</sub>*</em> (<em>V</em><sub>0</sub> - <em>E</em>)]<sup>1/2</sup> / &hbar;, exponentially suppressing non-resonant sub-barrier leakage transmission below 10<sup>-6</sup>.</li>
-        <li><strong>Barrier Thickness (<em>L<sub>b</sub></em>):</strong> Linewidth &Gamma; decreases exponentially: &Gamma;(<em>L<sub>b</sub></em>) &prop; exp(-2 &kappa; <em>L<sub>b</sub></em>). Increasing <em>L<sub>b</sub></em> from 2.0 to 4.0 nm narrows &Gamma; from 18.5 meV (&tau; &approx; 35 fs) to 0.85 meV (&tau; &approx; 775 fs), sharply increasing cavity <em>Q</em> at the cost of current amplitude.</li>
-        <li><strong>Well Width (<em>L<sub>w</sub></em>):</strong> Eigen-energies scale as <em>E<sub>n</sub></em> &prop; 1 / <em>L<sub>w</sub></em><sup>2</sup>. Expanding <em>L<sub>w</sub></em> lowers <em>E</em><sub>1</sub> and introduces higher-order resonant states (<em>E</em><sub>2</sub>, <em>E</em><sub>3</sub>) for <em>L<sub>w</sub></em> &gt; 6.5 nm.</li>
+        <li><strong>Wall Height (Barrier Height <em>V</em><sub>0</sub>):</strong> Dictates how tall the energy barriers are. Increasing <em>V</em><sub>0</sub> from 0.20 to 0.60 eV increases the barrier decay coefficient &kappa; = [2 <em>m<sub>b</sub>*</em> (<em>V</em><sub>0</sub> - <em>E</em>)]<sup>1/2</sup> / &hbar;, exponentially suppressing non-resonant sub-barrier leakage below 10<sup>-6</sup> to eliminate background electrical noise.</li>
+        <li><strong>Wall Thickness (Barrier Thickness <em>L<sub>b</sub></em>):</strong> Controls cavity selectivity versus switching speed. Linewidth scales as &Gamma;(<em>L<sub>b</sub></em>) &prop; exp(-2 &kappa; <em>L<sub>b</sub></em>). Increasing <em>L<sub>b</sub></em> from 2.0 to 4.0 nm narrows &Gamma; from 18.5 meV down to 0.85 meV, expanding dwell lifetime &tau; from 35.6 fs to 774.5 fs. Thicker walls produce an extremely sharp energy filter (high <em>Q</em>) at the cost of current amplitude, while thinner walls maximize current for ultra-fast switching.</li>
+        <li><strong>Room Width (Well Width <em>L<sub>w</sub></em>):</strong> Dictates the resonant "musical pitch" of the cavity (<em>E<sub>n</sub> &prop; 1 / L<sub>w</sub><sup>2</sup></em>). Expanding <em>L<sub>w</sub></em> lowers <em>E</em><sub>1</sub> from 145 meV to 62 meV and introduces higher-order harmonic resonant states (<em>E</em><sub>2</sub>, <em>E</em><sub>3</sub>) for <em>L<sub>w</sub></em> &gt; 6.5 nm.</li>
     </ul>
 
     <!-- ============================================================== -->
